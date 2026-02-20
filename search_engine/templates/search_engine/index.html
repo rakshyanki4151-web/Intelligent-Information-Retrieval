@@ -1,0 +1,182 @@
+{% extends 'search_engine/base.html' %}
+
+{% block title %}Coventry University Publications Search{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="relative overflow-hidden bg-white py-24 sm:py-32">
+    <div class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
+        aria-hidden="true">
+        <div class="relative left-1/2 -z-10 aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"
+            style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+        </div>
+    </div>
+
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 text-center">
+        <div class="mx-auto max-w-3xl mb-12">
+            <h1 class="text-5xl font-extrabold tracking-tight text-slate-900 sm:text-6xl mb-6">
+                Coventry University <span class="text-indigo-600">Publications</span>
+            </h1>
+            <p class="text-lg leading-8 text-slate-600 mb-10">
+                Research Centre for Computational Science and Mathematical Modelling. Explore hundreds of academic
+                papers with our advanced weighted indexing.
+            </p>
+
+            <!-- Modern Search Box -->
+            <form action="{% url 'search_engine:search' %}" method="get" class="relative max-w-2xl mx-auto mb-16">
+                <div class="relative group">
+                    <div
+                        class="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200">
+                    </div>
+                    <div
+                        class="relative flex items-center bg-white rounded-xl shadow-xl overflow-hidden ring-1 ring-slate-200">
+                        <div class="pl-5 text-slate-400">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </div>
+                        <input type="text" name="q" placeholder="Search publications, authors, or keywords..."
+                            class="w-full py-5 px-4 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-0 sm:text-lg"
+                            autofocus>
+                        <button type="submit"
+                            class="mr-2 px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-lg transition-all shadow-md">
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Stats Bar with Gradients -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                <div
+                    class="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all hover:scale-105 transform">
+                    <div class="flex flex-col items-center text-white">
+                        <svg class="w-10 h-10 mb-3 opacity-80" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z">
+                            </path>
+                        </svg>
+                        <span class="text-4xl font-extrabold mb-1">{{ stats.total_docs }}</span>
+                        <span class="text-sm font-bold uppercase tracking-wider opacity-90">Publications</span>
+                    </div>
+                </div>
+                <div
+                    class="bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all hover:scale-105 transform">
+                    <div class="flex flex-col items-center text-white">
+                        <svg class="w-10 h-10 mb-3 opacity-80" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="text-4xl font-extrabold mb-1">ICS</span>
+                        <span class="text-sm font-bold uppercase tracking-wider opacity-90">Research Centre</span>
+                    </div>
+                </div>
+                <div
+                    class="bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all hover:scale-105 transform">
+                    <div class="flex flex-col items-center text-white">
+                        <svg class="w-10 h-10 mb-3 opacity-80" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="text-4xl font-extrabold mb-1">{{ stats.indexed_docs }}</span>
+                        <span class="text-sm font-bold uppercase tracking-wider opacity-90">Search Nodes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Categories removed - Task 1 (Search Engine) is independent from Task 2 (Classification) -->
+    </div>
+</div>
+
+<!-- Features Grid -->
+<div class="bg-slate-50 py-24 sm:py-32 border-t border-slate-100">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center mb-16">
+            <h2 class="text-base font-bold leading-7 text-indigo-600 uppercase tracking-widest">Advanced Features</h2>
+            <p class="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Built for Research Excellence
+            </p>
+        </div>
+
+        <div
+            class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 sm:gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+            <!-- Weighted Search Card -->
+            <div class="relative pl-16 group">
+                <dt class="text-base font-bold leading-7 text-slate-900">
+                    <div
+                        class="absolute left-0 top-0 flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-600 shadow-lg group-hover:scale-110 transition duration-300">
+                        <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+                        </svg>
+                    </div>
+                    Weighted IR Engine
+                </dt>
+                <dd class="mt-2 text-base leading-7 text-slate-600">
+                    Advanced ranking using a vector space model with custom field weights:
+                    <span class="font-bold text-indigo-600">Title (3.0)</span>,
+                    <span class="font-bold text-indigo-600">Authors (2.5)</span>, and
+                    <span class="font-bold text-indigo-600">Keywords (2.0)</span>.
+                </dd>
+            </div>
+
+            <!-- Smart Crawler Card -->
+            <div class="relative pl-16 group">
+                <dt class="text-base font-bold leading-7 text-slate-900">
+                    <div
+                        class="absolute left-0 top-0 flex h-12 w-12 items-center justify-center rounded-xl bg-purple-600 shadow-lg group-hover:scale-110 transition duration-300">
+                        <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    Intelligent BFS Crawler
+                </dt>
+                <dd class="mt-2 text-base leading-7 text-slate-600">
+                    Custom crawler with pagination support, robots.txt compliance, and politeness delays to ensure
+                    ethical data harvesting from university portals.
+                </dd>
+            </div>
+
+            <!-- NLP Card -->
+            <div class="relative pl-16 group">
+                <dt class="text-base font-bold leading-7 text-slate-900">
+                    <div
+                        class="absolute left-0 top-0 flex h-12 w-12 items-center justify-center rounded-xl bg-pink-600 shadow-lg group-hover:scale-110 transition duration-300">
+                        <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.628.283a2 2 0 01-1.186.127l-3.56-.83a2 2 0 00-2.147.615l-4.14 4.14a1 1 0 00.314 1.53l5.825 2.328a3.377 3.377 0 004.473-1.625l.235-.47a1 1 0 01.812-.549l3.997-.4a2 2 0 001.089-.591l1.32-1.32a2 2 0 00.591-1.089l.4-3.997a1 1 0 01.549-.812l.47-.235a3.377 3.377 0 001.625-4.473l-2.328-5.825a1 1 0 00-1.53-.314l-4.14 4.14a2 2 0 00-.615 2.147l.83 3.56a2 2 0 01-.127 1.186l-.283.628a6 6 0 00-.517 3.86l.477 2.387a2 2 0 00.547 1.022l1.32 1.32z" />
+                        </svg>
+                    </div>
+                    NLP Pipeline
+                </dt>
+                <dd class="mt-2 text-base leading-7 text-slate-600">
+                    Utilizes NLTK for standard tokenization, stop word removal, and WordNet lemmatization to
+                    provide precise conceptual matching.
+                </dd>
+            </div>
+
+            <!-- Automation Card -->
+            <div class="relative pl-16 group">
+                <dt class="text-base font-bold leading-7 text-slate-900">
+                    <div
+                        class="absolute left-0 top-0 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600 shadow-lg group-hover:scale-110 transition duration-300">
+                        <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    Automated Scheduling
+                </dt>
+                <dd class="mt-2 text-base leading-7 text-slate-600">
+                    The background `Scheduler` ensures your index is always fresh, with automated crawls running every
+                    Monday at 11:00 AM.
+                </dd>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

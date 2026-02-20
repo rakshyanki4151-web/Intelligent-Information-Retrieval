@@ -1,0 +1,69 @@
+{
+  "threshold": 0.3,
+  "subset_accuracy": 0.7291666666666666,
+  "hamming_loss": 0.09722222222222222,
+  "precision_micro": 0.9183673469387755,
+  "recall_micro": 0.8181818181818182,
+  "f1_micro": 0.8653846153846154,
+  "precision_macro": 0.9178921568627452,
+  "recall_macro": 0.817738791423002,
+  "f1_macro": 0.8649237472766883,
+  "precision_weighted": 0.9183155080213904,
+  "recall_weighted": 0.8181818181818182,
+  "f1_weighted": 0.8653594771241829,
+  "precision_samples": 0.90625,
+  "recall_samples": 0.8645833333333334,
+  "f1_samples": 0.8680555555555557,
+  "per_label": {
+    "business": {
+      "precision": 0.875,
+      "recall": 0.7777777777777778,
+      "f1": 0.8235294117647058,
+      "support": 18
+    },
+    "entertainment": {
+      "precision": 0.9375,
+      "recall": 0.8333333333333334,
+      "f1": 0.8823529411764706,
+      "support": 18
+    },
+    "health": {
+      "precision": 0.9411764705882353,
+      "recall": 0.8421052631578947,
+      "f1": 0.8888888888888888,
+      "support": 19
+    }
+  },
+  "confusion_matrices": {
+    "business": [
+      [
+        28,
+        2
+      ],
+      [
+        4,
+        14
+      ]
+    ],
+    "entertainment": [
+      [
+        29,
+        1
+      ],
+      [
+        3,
+        15
+      ]
+    ],
+    "health": [
+      [
+        28,
+        1
+      ],
+      [
+        3,
+        16
+      ]
+    ]
+  }
+}

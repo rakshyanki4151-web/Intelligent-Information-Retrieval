@@ -1,0 +1,280 @@
+{% extends 'search_engine/base.html' %}
+
+{% block title %}System Insights - Coventry Search{% endblock %}
+
+{% block content %}
+<style>
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    .gradient-card {
+        background: linear-gradient(-45deg, #667eea 0%, #764ba2 100%);
+        background-size: 200% 200%;
+        animation: gradient 15s ease infinite;
+    }
+
+    .gradient-card-2 {
+        background: linear-gradient(-45deg, #f093fb 0%, #f5576c 100%);
+        background-size: 200% 200%;
+        animation: gradient 15s ease infinite;
+    }
+
+    .gradient-card-3 {
+        background: linear-gradient(-45deg, #4facfe 0%, #00f2fe 100%);
+        background-size: 200% 200%;
+        animation: gradient 15s ease infinite;
+    }
+
+    .gradient-card-4 {
+        background: linear-gradient(-45deg, #43e97b 0%, #38f9d7 100%);
+        background-size: 200% 200%;
+        animation: gradient 15s ease infinite;
+    }
+
+    .stat-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .chart-bar {
+        transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+</style>
+
+<div class="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 min-h-screen py-12">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <!-- Header with Gradient -->
+        <div class="mb-12 text-center">
+            <h2
+                class="text-5xl font-extrabold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+                System Insights Dashboard
+            </h2>
+            <p class="mt-2 text-lg text-slate-600 max-w-2xl mx-auto">
+                Real-time analytics and comprehensive metrics across your publication database
+            </p>
+        </div>
+
+        <!-- Big Stats with Gradients -->
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-12">
+            <div class="gradient-card stat-card overflow-hidden shadow-2xl rounded-2xl p-8 text-white">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <dt class="text-sm font-bold text-white/80 uppercase tracking-widest">Total Publications</dt>
+                        <dd class="mt-2 text-5xl font-extrabold">{{ total_pubs }}</dd>
+                        <p class="mt-2 text-xs text-white/70">Indexed & Classified</p>
+                    </div>
+                    <svg class="w-16 h-16 text-white/30" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z">
+                        </path>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="gradient-card-2 stat-card overflow-hidden shadow-2xl rounded-2xl p-8 text-white">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <dt class="text-sm font-bold text-white/80 uppercase tracking-widest">Search Index</dt>
+                        <dd class="mt-2 text-5xl font-extrabold">{{ indexed_docs }}</dd>
+                        <p class="mt-2 text-xs text-white/70">Documents Ready</p>
+                    </div>
+                    <svg class="w-16 h-16 text-white/30" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="gradient-card-3 stat-card overflow-hidden shadow-2xl rounded-2xl p-8 text-white">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <dt class="text-sm font-bold text-white/80 uppercase tracking-widest">Year Coverage</dt>
+                        <dd class="mt-2 text-3xl font-extrabold">Multi-Year</dd>
+                        <p class="mt-2 text-xs text-white/70">Publications Timeline</p>
+                    </div>
+                    <svg class="w-16 h-16 text-white/30" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="gradient-card-4 stat-card overflow-hidden shadow-2xl rounded-2xl p-8 text-white">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <dt class="text-sm font-bold text-white/80 uppercase tracking-widest">System Health</dt>
+                        <dd class="mt-2 text-3xl font-extrabold">Optimal</dd>
+                        <p class="mt-2 text-xs text-white/70">All Systems Go</p>
+                    </div>
+                    <svg class="w-16 h-16 text-white/30" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
+            <!-- Publications by Year (Colorful Chart) -->
+            <div
+                class="bg-white rounded-2xl shadow-xl border-2 border-indigo-100 p-8 hover:shadow-2xl transition-shadow">
+                <h3
+                    class="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-8 flex items-center">
+                    <svg class="w-6 h-6 mr-3 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+                        </path>
+                    </svg>
+                    Publications Timeline
+                </h3>
+                <div class="space-y-5">
+                    {% for year, count in year_counts %}
+                    <div>
+                        <div class="flex items-center justify-between text-sm mb-2">
+                            <span class="font-bold text-slate-700 text-lg">{{ year }}</span>
+                            <span class="text-indigo-600 font-bold bg-indigo-50 px-3 py-1 rounded-full">{{ count }}
+                                papers</span>
+                        </div>
+                        <div
+                            class="w-full bg-gradient-to-r from-slate-100 to-slate-200 rounded-full h-4 overflow-hidden shadow-inner">
+                            <div class="chart-bar bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-4 rounded-full shadow-lg"
+                                style="width: {{ count }}%;">
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Recent Activity Table with Color -->
+            <div
+                class="bg-white rounded-2xl shadow-xl border-2 border-purple-100 overflow-hidden hover:shadow-2xl transition-shadow">
+                <h3
+                    class="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent p-8 border-b-2 border-purple-100 flex items-center">
+                    <svg class="w-6 h-6 mr-3 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+                        </path>
+                    </svg>
+                    Latest Additions
+                </h3>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-purple-100">
+                        <thead class="bg-gradient-to-r from-purple-50 to-pink-50">
+                            <tr>
+                                <th
+                                    class="px-8 py-4 text-left text-xs font-bold text-purple-700 uppercase tracking-widest">
+                                    Publication</th>
+                                <th
+                                    class="px-8 py-4 text-left text-xs font-bold text-purple-700 uppercase tracking-widest">
+                                    Year</th>
+                                <th
+                                    class="px-8 py-4 text-left text-xs font-bold text-purple-700 uppercase tracking-widest">
+                                    Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-purple-50">
+                            {% for pub in recent_pubs %}
+                            <tr class="hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 transition-all">
+                                <td class="px-8 py-4 text-sm font-semibold text-slate-700">{{ pub.title|truncatechars:45
+                                    }}
+                                </td>
+                                <td class="px-8 py-4">
+                                    <span
+                                        class="inline-flex px-3 py-1 rounded-full text-xs font-bold bg-indigo-100 text-indigo-700">
+                                        {{ pub.year }}
+                                    </span>
+                                </td>
+                                <td class="px-8 py-4 text-sm">
+                                    <a href="{{ pub.publication_link }}" target="_blank"
+                                        class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all shadow-md hover:shadow-lg">
+                                        View →
+                                    </a>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="3" class="px-8 py-8 text-center text-slate-400">No recent publications</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Full Width: Crawler Logs with Gradient -->
+        <div
+            class="mt-8 bg-white rounded-2xl shadow-xl border-2 border-emerald-100 overflow-hidden hover:shadow-2xl transition-shadow">
+            <h3
+                class="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent p-8 border-b-2 border-emerald-100 flex items-center">
+                <svg class="w-6 h-6 mr-3 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A11.955 11.955 0 012 12c0 4.993 3.657 9.128 8.438 9.878m6.124-9.878a11.955 11.955 0 01-8.618 3.04">
+                    </path>
+                </svg>
+                Crawler Activity Log
+            </h3>
+            <table class="min-w-full divide-y divide-emerald-100">
+                <thead class="bg-gradient-to-r from-emerald-50 to-teal-50">
+                    <tr>
+                        <th class="px-8 py-4 text-left text-xs font-bold text-emerald-700 uppercase tracking-widest">
+                            Timestamp</th>
+                        <th class="px-8 py-4 text-left text-xs font-bold text-emerald-700 uppercase tracking-widest">
+                            Status</th>
+                        <th class="px-8 py-4 text-left text-xs font-bold text-emerald-700 uppercase tracking-widest">
+                            Documents
+                        </th>
+                        <th class="px-8 py-4 text-left text-xs font-bold text-emerald-700 uppercase tracking-widest">
+                            Duration
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-emerald-50">
+                    {% for log in recent_logs %}
+                    <tr class="hover:bg-gradient-to-r hover:from-emerald-50 hover:to-teal-50 transition-all">
+                        <td class="px-8 py-4 text-sm font-semibold text-slate-700">{{ log.start_time|date:"Y-m-d H:i" }}
+                        </td>
+                        <td class="px-8 py-4">
+                            <span
+                                class="inline-flex px-3 py-1 rounded-full text-xs font-bold {% if log.status == 'completed' %}bg-green-100 text-green-700 border border-green-200{% else %}bg-red-100 text-red-700 border border-red-200{% endif %}">
+                                {{ log.get_status_display }}
+                            </span>
+                        </td>
+                        <td class="px-8 py-4">
+                            <span
+                                class="inline-flex items-center px-3 py-1 rounded-full text-sm font-bold bg-indigo-100 text-indigo-700">
+                                {{ log.documents_added }} records
+                            </span>
+                        </td>
+                        <td class="px-8 py-4 text-sm text-slate-600 font-mono">{{ log.duration }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="px-8 py-8 text-center text-slate-400">No crawler activity recorded</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,230 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Classifier - Coventry Publications</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .highlight {
+            background-color: #fef3c7;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .badge-green {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .badge-yellow {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+        }
+
+        .badge-gray {
+            background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%);
+        }
+
+        .confidence-high {
+            color: #10b981;
+        }
+
+        .confidence-medium {
+            color: #fbbf24;
+        }
+
+        .confidence-low {
+            color: #ef4444;
+        }
+
+        .slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #667eea;
+            cursor: pointer;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #667eea;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body class="p-6">
+    <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-white mb-2">Document Classifier</h1>
+            <p class="text-purple-100">Multi-label classification using Naive Bayes</p>
+            <a href="{% url 'search_engine:index' %}"
+                class="inline-block mt-4 text-white hover:text-purple-200 underline">← Back to Search</a>
+        </div>
+
+        <!-- Main Card -->
+        <div class="bg-white rounded-2xl shadow-2xl p-8 mb-6">
+            <!-- Input Section -->
+            <div class="mb-6">
+                <label class="block text-gray-700 font-semibold mb-3 text-lg">Enter Text to Classify</label>
+                <textarea id="inputText" rows="8"
+                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none transition-colors resize-none"
+                    placeholder="Paste your text here... (e.g., news article, document excerpt, etc.)"></textarea>
+            </div>
+
+            <!-- Threshold Slider -->
+            <div class="mb-6">
+                <div class="flex justify-between items-center mb-2">
+                    <label class="text-gray-700 font-semibold">Confidence Threshold</label>
+                    <span class="text-purple-600 font-bold text-lg"><span id="thresholdValue">30</span>%</span>
+                </div>
+                <input type="range" id="thresholdSlider" min="10" max="90" value="30"
+                    class="slider w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                <div class="flex justify-between text-xs text-gray-500 mt-1">
+                    <span>10% (More labels)</span>
+                    <span>90% (Fewer labels)</span>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-wrap gap-3 mb-6">
+                <button id="classifyBtn"
+                    class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-purple-700 hover:to-indigo-700 transition-all shadow-lg">
+                    Classify Document
+                </button>
+
+                <button id="clearBtn"
+                    class="bg-gray-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-600 transition-colors">
+                    Clear
+                </button>
+
+                <!-- Example Buttons -->
+                <div class="ml-auto flex gap-2">
+                    <button
+                        class="example-btn bg-blue-100 text-blue-700 px-4 py-2 rounded-lg text-sm hover:bg-blue-200 transition-colors"
+                        data-example="short">
+                        Test: Short Input
+                    </button>
+                    <button
+                        class="example-btn bg-green-100 text-green-700 px-4 py-2 rounded-lg text-sm hover:bg-green-200 transition-colors"
+                        data-example="long">
+                        Test: Long Input
+                    </button>
+                    <button
+                        class="example-btn bg-orange-100 text-orange-700 px-4 py-2 rounded-lg text-sm hover:bg-orange-200 transition-colors"
+                        data-example="ambiguous">
+                        Test: Ambiguous
+                    </button>
+                </div>
+            </div>
+
+            <!-- Loading Indicator -->
+            <div id="loading" class="hidden text-center py-8">
+                <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600"></div>
+                <p class="text-gray-600 mt-3">Classifying...</p>
+            </div>
+
+            <!-- Results Section -->
+            <div id="results" class="hidden">
+                <!-- Category Badges -->
+                <div class="mb-6">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-xl font-bold text-gray-800">Predicted Categories</h3>
+                        <span id="categoryCount" class="text-sm text-gray-600"></span>
+                    </div>
+                    <div id="badges" class="flex flex-wrap gap-3"></div>
+                </div>
+
+                <!-- Confidence Interpretation -->
+                <div id="confidenceMessage" class="mb-6 p-4 rounded-lg border-l-4"></div>
+
+                <!-- Top Features -->
+                <div class="mb-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Why this classification?</h3>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <p class="text-sm text-gray-600 mb-3">Top influential words (TF-IDF scores):</p>
+                        <div id="topFeatures" class="flex flex-wrap gap-2"></div>
+                    </div>
+                </div>
+
+                <!-- Highlighted Text -->
+                <div class="mb-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Your Text (with key words highlighted)</h3>
+                    <div id="highlightedText" class="bg-gray-50 p-4 rounded-lg text-gray-700 leading-relaxed"></div>
+                </div>
+
+                <details class="mb-6">
+                    <summary
+                        class="cursor-pointer text-lg font-bold text-gray-800 hover:text-purple-600 transition-colors">
+                        Preprocessing Steps
+                    </summary>
+                    <div class="mt-4 space-y-3">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="font-semibold text-gray-700 mb-2">1. Original Text</div>
+                            <div id="step1" class="text-sm text-gray-600 font-mono"></div>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="font-semibold text-gray-700 mb-2">2. Lowercased</div>
+                            <div id="step2" class="text-sm text-gray-600 font-mono"></div>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="font-semibold text-gray-700 mb-2">3. Stop Words Removed</div>
+                            <div id="step4" class="text-sm text-gray-600 font-mono"></div>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="font-semibold text-gray-700 mb-2">4. Lemmatized (Final)</div>
+                            <div id="step5" class="text-sm text-gray-600 font-mono"></div>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- All Probabilities -->
+                <details>
+                    <summary
+                        class="cursor-pointer text-lg font-bold text-gray-800 hover:text-purple-600 transition-colors">
+                        All Category Probabilities
+                    </summary>
+                    <div id="allProbabilities" class="mt-4 space-y-2"></div>
+                </details>
+            </div>
+        </div>
+
+        <!-- Info Card -->
+        <div class="bg-white rounded-2xl shadow-lg p-6">
+            <h3 class="text-lg font-bold text-gray-800 mb-3">About the Classifier</h3>
+            <div class="grid md:grid-cols-2 gap-4 text-sm">
+                <div>
+                    <span class="font-semibold text-gray-700">Method:</span>
+                    <span class="text-gray-600">MultiOutputClassifier with MultinomialNB</span>
+                </div>
+                <div>
+                    <span class="font-semibold text-gray-700">Categories:</span>
+                    <span class="text-gray-600">Business, Entertainment, Health</span>
+                </div>
+                <div>
+                    <span class="font-semibold text-gray-700">Features:</span>
+                    <span class="text-gray-600">TF-IDF with 5000 max features</span>
+                </div>
+                <div>
+                    <span class="font-semibold text-gray-700">Preprocessing:</span>
+                    <span class="text-gray-600">Lemmatization + Stop-word removal</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/classifier.js' %}"></script>
+</body>
+
+</html>

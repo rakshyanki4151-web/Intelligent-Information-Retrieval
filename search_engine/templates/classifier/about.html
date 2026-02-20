@@ -1,0 +1,86 @@
+{% extends 'search_engine/base.html' %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-12 max-w-4xl">
+    <div class="text-center mb-16">
+        <h1 class="text-4xl font-extrabold text-slate-800 mb-6">About the Project</h1>
+        <div class="h-1.5 w-24 bg-indigo-600 mx-auto rounded-full"></div>
+    </div>
+
+    <div class="space-y-12">
+        <section>
+            <h2 class="text-2xl font-bold text-slate-800 mb-4 flex items-center">
+                <span
+                    class="w-8 h-8 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center mr-3 text-sm">01</span>
+                Project Context
+            </h2>
+            <p class="text-slate-600 leading-relaxed mb-4">
+                This application was developed as part of a comprehensive final assignment for the Information Retrieval
+                and Machine Learning modules. It demonstrates the integration of a search engine (Task 1) and a
+                multi-label document classifier (Task 2).
+            </p>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-slate-800 mb-4 flex items-center">
+                <span
+                    class="w-8 h-8 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center mr-3 text-sm">02</span>
+                Data Collection Process
+            </h2>
+            <div class="bg-slate-50 p-6 rounded-3xl border border-slate-100">
+                <p class="text-sm text-slate-600 mb-4">
+                    The dataset was collected through a two-stage process to ensure variety and quality:
+                </p>
+                <ul class="space-y-3 text-sm text-slate-600">
+                    <li class="flex items-start">
+                        <svg class="w-4 h-4 text-emerald-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <strong>Stage 1 (Automated):</strong> A BFS-based crawler traversed the Coventry University
+                        PurePortal to collect academic publication metadata.
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-4 h-4 text-emerald-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <strong>Stage 2 (Manual):</strong> Targeted snippets from BBC, Reuters, and medical journals
+                        were collected to create high-quality multi-label ground truth for training.
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-slate-800 mb-4 flex items-center">
+                <span
+                    class="w-8 h-8 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center mr-3 text-sm">03</span>
+                Technical Consistency Requirement
+            </h2>
+            <p class="text-slate-600 leading-relaxed">
+                A core technical requirement was ensuring that the <strong>Search Engine (Task 1)</strong> and the
+                <strong>Classifier (Task 2)</strong> "speak the same language." Both systems share a unified
+                <code>TextPreprocessor</code> that handles tokenization, stop-word removal, and normalization
+                (Stemming/Lemmatization) identically, ensuring consistency across the entire retrieval pipeline.
+            </p>
+        </section>
+
+        <section class="pt-8 border-t border-slate-100">
+            <div class="flex items-center space-x-4">
+                <div class="p-4 bg-slate-900 rounded-2xl text-white">
+                    <p class="text-xs uppercase font-bold tracking-widest text-slate-500 mb-1">Developer</p>
+                    <p class="font-bold">Assignment Candidate</p>
+                </div>
+
+                <div class="p-4 bg-slate-100 rounded-2xl text-slate-700">
+                    <p class="text-xs uppercase font-bold tracking-widest text-slate-400 mb-1">Software</p>
+                    <p class="font-bold">Django / Scikit-Learn</p>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}

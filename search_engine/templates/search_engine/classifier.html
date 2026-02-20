@@ -1,0 +1,112 @@
+{% extends 'search_engine/base.html' %}
+
+{% block title %}Document Classifier - Coventry Publications{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <h2>Document Classification (Task 2)</h2>
+        <p>Enter a text below to classify it into Business, Entertainment, or Health using our Naive Bayes model.</p>
+
+        <form method="POST" class="classifier-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <textarea name="text" rows="6" placeholder="Paste your text here..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Classify Document</button>
+        </form>
+
+        {% if result %}
+        <div class="result-card mt-4">
+            <h3>Classification Result</h3>
+            {% if result.categories %}
+            <div class="prediction-box">
+                <strong>Predicted Categories:</strong>
+                <div class="labels">
+                    {% for cat in result.categories %}
+                    <span class="label label-{{ cat|lower }}">{{ cat|title }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            {% else %}
+            <p class="text-danger">Could not classify this document. Is the model trained?</p>
+            {% endif %}
+
+            <div class="input-preview">
+                <strong>Input Text:</strong>
+                <p>{{ result.text|truncatewords:50 }}</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="card mt-4">
+        <h3>About the Classifier</h3>
+        <ul>
+            <li><strong>Method:</strong> Multinomial Naive Bayes</li>
+            <li><strong>Multi-label:</strong> Supported via MultiOutputClassifier</li>
+            <li><strong>Categories:</strong> Business, Entertainment, Health</li>
+            <li><strong>Preprocessing:</strong> Lemmatization + Stop-word removal</li>
+        </ul>
+        <a href="{% url 'search_engine:dashboard' %}" class="btn btn-secondary">View Model Accuracy & Metrics</a>
+    </div>
+</div>
+
+<style>
+    .classifier-form textarea {
+        width: 100%;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-family: inherit;
+        font-size: 1rem;
+        margin-bottom: 15px;
+    }
+
+    .result-card {
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        border-left: 5px solid #0056b3;
+    }
+
+    .prediction-box {
+        margin: 15px 0;
+        font-size: 1.2rem;
+    }
+
+    .labels {
+        margin-top: 10px;
+        display: flex;
+        gap: 10px;
+    }
+
+    .label {
+        padding: 5px 15px;
+        border-radius: 20px;
+        color: white;
+        font-weight: bold;
+    }
+
+    .label-business {
+        background: #28a745;
+    }
+
+    .label-entertainment {
+        background: #ffc107;
+        color: #000;
+    }
+
+    .label-health {
+        background: #dc3545;
+    }
+
+    .mt-4 {
+        margin-top: 2rem;
+    }
+
+    .btn-secondary {
+        background: #6c757d;
+    }
+</style>
+{% endblock %}

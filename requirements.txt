@@ -1,0 +1,13 @@
+Django
+beautifulsoup4
+requests
+nltk
+scikit-learn
+numpy
+apscheduler
+plotly
+pandas
+reportlab
+matplotlib
+joblib
+psutil

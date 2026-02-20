@@ -1,0 +1,121 @@
+{% extends 'search_engine/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="relative py-20 overflow-hidden">
+    <!-- Hero Section -->
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-5xl md:text-6xl font-extrabold text-slate-800 mb-6 tracking-tight">
+                Document <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Classification</span>
+                Portal
+            </h1>
+            <p class="text-xl text-slate-600 mb-10 leading-relaxed">
+                A high-performance machine learning suite for multi-label text analysis.
+                Trained on real-world news and specialized pharmaceutical datasets using TF-IDF and Naive Bayes.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="{% url 'search_engine:classify' %}"
+                    class="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-xl shadow-indigo-200 transition transform hover:-translate-y-1">
+                    Start Prediction
+                </a>
+                <a href="{% url 'search_engine:metrics' %}"
+                    class="px-8 py-4 bg-white border border-slate-200 hover:border-indigo-600 text-slate-700 font-bold rounded-2xl shadow-sm transition transform hover:-translate-y-1">
+                    View Data Insights
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Decoration -->
+    <div
+        class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-indigo-100 rounded-full blur-3xl opacity-50">
+    </div>
+    <div
+        class="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-96 h-96 bg-purple-100 rounded-full blur-3xl opacity-50">
+    </div>
+</div>
+
+<!-- Feature Grid -->
+<div class="container mx-auto px-4 pb-24">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- 1. Prediction -->
+        <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition">
+            <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mb-6">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800 mb-3">Live Prediction</h3>
+            <p class="text-slate-500 mb-6 text-sm">Submit any news snippet or abstract to see multi-label predictions
+                with confidence scores.</p>
+            <a href="{% url 'search_engine:classify' %}" class="text-indigo-600 font-bold text-sm hover:underline">Open
+                Predictor →</a>
+        </div>
+
+        <!-- 2. Metrics -->
+        <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition">
+            <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-6">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800 mb-3">Metrics Dashboard</h3>
+            <p class="text-slate-500 mb-6 text-sm">Deep dive into model performance: Precision, Recall, F1-Score, and
+                Confusion Matrices.</p>
+            <a href="{% url 'search_engine:metrics' %}" class="text-emerald-600 font-bold text-sm hover:underline">View
+                Performance →</a>
+        </div>
+
+        <!-- 3. Dataset -->
+        <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition">
+            <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center mb-6">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 7v10c0 2.21 3.58 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.58 4 8 4s8-1.79 8-4M4 7c0-2.21 3.58-4 8-4s8 1.79 8 4m0 5c0 2.21-3.58 4-8 4s-8-1.79-8-4" />
+                </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800 mb-3">Dataset Statistics</h3>
+            <p class="text-slate-500 mb-6 text-sm">Analyze the distribution of 240+ documents and label overlaps within
+                the training set.</p>
+            <a href="{% url 'search_engine:dataset_stats' %}"
+                class="text-purple-600 font-bold text-sm hover:underline">Explore Data →</a>
+        </div>
+
+        <!-- 4. Robustness -->
+        <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition">
+            <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center mb-6">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.040L3 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622l-1.382-3.016z" />
+                </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800 mb-3">Robustness Suite</h3>
+            <p class="text-slate-500 mb-6 text-sm">Stress-test the model against noise, adversarial patterns, and
+                long-range text inputs.</p>
+            <a href="{% url 'search_engine:robustness' %}" class="text-amber-600 font-bold text-sm hover:underline">Run
+                Stress Tests →</a>
+        </div>
+
+        <!-- 5. Exports -->
+        <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition">
+            <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-6">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800 mb-3">Export Center</h3>
+            <p class="text-slate-500 mb-6 text-sm">Generate professional PDF reports, download CSV datasets, and export
+                serialized model files.</p>
+            <a href="{% url 'search_engine:export_center' %}" class="text-blue-600 font-bold text-sm hover:underline">Go
+                to Downloads →</a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

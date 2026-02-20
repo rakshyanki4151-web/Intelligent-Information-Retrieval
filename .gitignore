@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django
+*.log
+local_settings.py
+# db.sqlite3  # Included for assessor data availability
+media
+staticfiles
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDEs
+.vscode
+.idea
+
+# Custom Data
+# Keep everything in root data/ for submission
+!data/
+!data/**/*
+crawler.lock
+
+# Archives and build artifacts
+*.zip
+*.tar.gz
+*.rar
+build/
+dist/
+
+# OS
+Thumbs.db
+Desktop.ini

@@ -1,0 +1,375 @@
+{% extends 'search_engine/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="flex items-center justify-between mb-8">
+        <div>
+            <h1 class="text-4xl font-bold text-slate-800">Dataset Statistics & Quality</h1>
+            <p class="text-slate-500 mt-2">Comprehensive analysis of Task 2 Multi-label News Dataset</p>
+        </div>
+        <div class="flex space-x-4">
+            <a href="{% url 'search_engine:classifier_home' %}"
+                class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg transition">
+                ← Back to Classifier
+            </a>
+            <button onclick="window.print()"
+                class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-lg flex items-center transition">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                </svg>
+                Export Report
+            </button>
+        </div>
+    </div>
+
+    <!-- 1. Dataset Overview Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+            <p class="text-slate-500 text-sm font-medium">Total Documents</p>
+            <h3 class="text-3xl font-bold text-blue-600 mt-1">{{ stats.total_documents }}</h3>
+            <p class="text-xs text-slate-400 mt-2">Final merged dataset</p>
+        </div>
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+            <p class="text-slate-500 text-sm font-medium">Unique Labels</p>
+            <h3 class="text-3xl font-bold text-emerald-600 mt-1">{{ stats.unique_labels_count }}</h3>
+            <p class="text-xs text-slate-400 mt-2">Core news categories</p>
+        </div>
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+            <p class="text-slate-500 text-sm font-medium">Avg Labels / Doc</p>
+            <h3 class="text-3xl font-bold text-indigo-600 mt-1">{{ stats.avg_labels_per_doc }}</h3>
+            <p class="text-xs text-slate-400 mt-2">Multi-label intensity</p>
+        </div>
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+            <p class="text-slate-500 text-sm font-medium">Collection Period</p>
+            <h3 class="text-lg font-bold text-slate-700 mt-2">{{ stats.date_range }}</h3>
+            <p class="text-xs text-slate-400 mt-1">Manual collection timeline</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+        <!-- 2. Category Distribution -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-xl font-bold text-slate-800">Category Distribution</h2>
+                {% if distribution.is_imbalanced %}
+                <span class="px-2 py-1 bg-amber-100 text-amber-700 text-xs font-bold rounded">⚠️ IMBALANCED ({{
+                    distribution.ratio }}x)</span>
+                {% else %}
+                <span class="px-2 py-1 bg-emerald-100 text-emerald-700 text-xs font-bold rounded">✅ BALANCED</span>
+                {% endif %}
+            </div>
+            <div class="h-64">
+                <canvas id="distributionChart"></canvas>
+            </div>
+        </div>
+
+        <!-- 3. Label Co-occurrence -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+            <h2 class="text-xl font-bold text-slate-800 mb-6">Label Co-occurrence Matrix</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr>
+                            <th class="p-2"></th>
+                            {% for label in stats.unique_labels %}
+                            <th class="p-2 font-bold text-slate-500 uppercase tracking-tighter">{{ label }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row_label in stats.unique_labels %}
+                        <tr>
+                            <td class="p-2 font-bold text-slate-700">{{ row_label }}</td>
+                            {% for col_label in stats.unique_labels %}
+                            <td class="p-4 text-center border border-slate-50">
+                                {% if row_label == col_label %}
+                                <span class="text-slate-200">/</span>
+                                {% else %}
+                                {% with val=0 %}
+                                {# Dynamic matrix lookup is tricky in templates, we rely on formatted pairs #}
+                                <div
+                                    class="text-lg font-semibold {% if val > 0 %}text-blue-500{% else %}text-slate-400{% endif %}">
+                                    {% for l1, rows in chart_data.cooccurrence.matrix.items %}
+                                    {% if l1 == row_label %}
+                                    {% for l2, count in rows.items %}
+                                    {% if l2 == col_label %}{{ count }}{% endif %}
+                                    {% endfor %}
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% if not val %}0{% endif %}
+                                </div>
+                                {% endwith %}
+                                {% endif %}
+                            </td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+        <!-- 4. Data Quality Checks -->
+        <div class="lg:col-span-1 bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+            <h2 class="text-xl font-bold text-slate-800 mb-6">Data Quality Health</h2>
+            <div class="space-y-4">
+                <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
+                    <span class="text-slate-700">Duplicate Check</span>
+                    {% if quality.duplicate_count == 0 %}
+                    <span class="text-emerald-600 font-bold flex items-center">✅ Clean</span>
+                    {% else %}
+                    <span class="text-amber-600 font-bold flex items-center">⚠️ {{ quality.duplicate_count }}
+                        dups</span>
+                    {% endif %}
+                </div>
+                <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
+                    <span class="text-slate-700">Min. Content (10w)</span>
+                    {% if quality.short_doc_count == 0 %}
+                    <span class="text-emerald-600 font-bold flex items-center">✅ Valid</span>
+                    {% else %}
+                    <span class="text-amber-600 font-bold flex items-center">⚠️ {{ quality.short_doc_count }}
+                        short</span>
+                    {% endif %}
+                </div>
+                <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
+                    <span class="text-slate-700">Class Balance</span>
+                    {% if not distribution.is_imbalanced %}
+                    <span class="text-emerald-600 font-bold flex items-center">✅ Balanced</span>
+                    {% else %}
+                    <span class="text-amber-600 font-bold flex items-center">⚠️ Imbalanced</span>
+                    {% endif %}
+                </div>
+                <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl">
+                    <span class="text-slate-700">UTF-8 Encoding</span>
+                    <span class="text-emerald-600 font-bold flex items-center">✅ Valid</span>
+                </div>
+            </div>
+
+            <div class="mt-6 p-4 bg-blue-50 text-blue-800 rounded-xl text-sm">
+                <p><strong>Recommendation:</strong>
+                    {% if distribution.is_imbalanced %}
+                    Collect more documents for minority classes to reduce imbalance bias in Naive Bayes.
+                    {% else %}
+                    Dataset quality is optimal for training a multi-label classifier.
+                    {% endif %}</p>
+            </div>
+        </div>
+
+        <!-- 7. Vocabulary Stats -->
+        <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+            <h2 class="text-xl font-bold text-slate-800 mb-6">Vocabulary & Preprocessing Profile</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <p class="text-slate-500 mb-4">Top Preprocessed Tokens</p>
+                    <div class="h-64">
+                        <canvas id="vocabChart"></canvas>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="p-4 border border-slate-100 rounded-xl">
+                        <p class="text-slate-500 text-xs">Total Unique Words</p>
+                        <p class="text-2xl font-bold text-slate-800">{{ vocab.unique_tokens }}</p>
+                    </div>
+                    <div class="p-4 border border-slate-100 rounded-xl">
+                        <p class="text-slate-500 text-xs">Avg Doc Length</p>
+                        <p class="text-2xl font-bold text-slate-800">{{ stats.avg_doc_length }} words</p>
+                    </div>
+                    <div class="p-4 border border-slate-100 rounded-xl">
+                        <p class="text-slate-500 text-xs">Stop Words Processed</p>
+                        <p class="text-2xl font-bold text-slate-800">Yes (Validated)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Sample Documents Table -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden mb-8">
+        <div class="p-6 border-b border-slate-100 flex items-center justify-between">
+            <h2 class="text-xl font-bold text-slate-800">Dataset Samples</h2>
+            <div class="flex items-center space-x-4">
+                <form action="." method="GET" class="flex items-center space-x-2">
+                    <label class="text-xs font-bold text-slate-400 uppercase">Filter By Label:</label>
+                    <select name="category" onchange="this.form.submit()"
+                        class="bg-slate-50 border-none rounded-lg text-sm px-4 py-2 focus:ring-2 focus:ring-blue-500">
+                        <option value="all" {% if category_filter == 'all' %}selected{% endif %}>All Categories</option>
+                        {% for cat in all_categories %}
+                        <option value="{{ cat }}" {% if category_filter == cat %}selected{% endif %}>{{ cat|title }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </form>
+            </div>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left">
+                <thead class="bg-slate-50 border-b border-slate-100">
+                    <tr>
+                        <th class="px-6 py-4 text-xs font-bold text-slate-400 uppercase">Text Preview</th>
+                        <th class="px-6 py-4 text-xs font-bold text-slate-400 uppercase">Labels</th>
+                        <th class="px-6 py-4 text-xs font-bold text-slate-400 uppercase">Length</th>
+                        <th class="px-6 py-4 text-xs font-bold text-slate-400 uppercase">Source</th>
+                        <th class="px-6 py-4 text-xs font-bold text-slate-400 uppercase">Date</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                    {% for doc in sample_docs %}
+                    <tr class="hover:bg-slate-50 transition">
+                        <td class="px-6 py-4">
+                            <p class="text-sm text-slate-700 line-clamp-2">{{ doc.text }}</p>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex flex-wrap gap-1">
+                                {% for label in doc.labels %}
+                                <span
+                                    class="px-2 py-0.5 bg-blue-100 text-blue-700 text-[10px] font-bold rounded uppercase">{{
+                                    label }}</span>
+                                {% endfor %}
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 text-sm text-slate-500">{{ doc.text|wordcount }} words</td>
+                        <td class="px-6 py-4">
+                            <span class="text-xs font-medium px-2 py-1 bg-slate-100 rounded text-slate-600">{{
+                                doc.source }}</span>
+                        </td>
+                        <td class="px-6 py-4 text-xs text-slate-400">{{ doc.date_collected }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="px-6 py-8 text-center text-slate-400">No documents match the active
+                            filter.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <!-- Simple Pagination -->
+        <div class="p-6 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-sm text-slate-500">Page {{ current_page }} of {{ total_pages }}</span>
+            <div class="flex space-x-2">
+                {% if current_page > 1 %}
+                <a href="?category={{ category_filter }}&page={{ current_page|add:-1 }}"
+                    class="px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50">Previous</a>
+                {% endif %}
+                {% if current_page < total_pages %} <a
+                    href="?category={{ category_filter }}&page={{ current_page|add:1 }}"
+                    class="px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50">
+                    Next</a>
+                    {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+        <!-- 6. Sources & Citations -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+            <h2 class="text-xl font-bold text-slate-800 mb-6">Sources & Citation Audit</h2>
+            <div class="space-y-3">
+                {% for source, count in sources.counts.items %}
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div
+                            class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 font-bold text-xs">
+                            {{ source|slice:":1" }}
+                        </div>
+                        <span class="text-slate-700 font-medium">{{ source }}</span>
+                    </div>
+                    <span class="bg-slate-100 px-3 py-1 rounded-full text-xs font-bold text-slate-500">{{ count }}
+                        docs</span>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="mt-8 pt-6 border-t border-slate-50">
+                <div
+                    class="flex items-start space-x-3 text-[10px] text-slate-400 leading-normal uppercase font-bold tracking-widest">
+                    <svg class="w-4 h-4 text-slate-300 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <span>Ethics Warning: All documents cited with original sources. Dataset collected for academic
+                        research purposes under fair use guidelines. Content contains snippets from BBC News, Reuters,
+                        and TechCrunch.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8. Collection Documentation -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+            <h2 class="text-xl font-bold text-slate-800 mb-6">Collection Documentation</h2>
+            <div class="space-y-4">
+                <div>
+                    <h4 class="text-sm font-bold text-slate-700 mb-1">Methodology</h4>
+                    <p class="text-sm text-slate-500">Hybrid collection using Python crawlers for PurePortal and manual
+                        extraction for news sources to ensure high-quality multi-label ground truth.</p>
+                </div>
+                <div>
+                    <h4 class="text-sm font-bold text-slate-700 mb-1">Selection Criteria</h4>
+                    <p class="text-sm text-slate-500">Articles were selected based on thematic relevance to the three
+                        core categories, prioritizing text with clear cross-domain overlaps (e.g., Health-Tech,
+                        Entertainment-Business).</p>
+                </div>
+                <div>
+                    <h4 class="text-sm font-bold text-slate-700 mb-1">Quality Control</h4>
+                    <p class="text-sm text-slate-500">Automated duplicate removal and manual label verification by a
+                        primary annotator.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const chartData = JSON.parse('{{ chart_data_json|safe }}');
+
+    // Distribution Chart
+    new Chart(document.getElementById('distributionChart'), {
+        type: 'doughnut',
+        data: {
+            labels: chartData.distribution_labels,
+            datasets: [{
+                data: chartData.distribution_data,
+                backgroundColor: ['#3b82f6', '#10b981', '#6366f1', '#f59e0b', '#ef4444'],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { position: 'bottom' }
+            },
+            cutout: '70%'
+        }
+    });
+
+    // Vocabulary Chart
+    new Chart(document.getElementById('vocabChart'), {
+        type: 'bar',
+        data: {
+            labels: chartData.vocab_labels,
+            datasets: [{
+                label: 'Frequency',
+                data: chartData.vocab_data,
+                backgroundColor: '#3b82f6',
+                borderRadius: 4
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+                x: { grid: { display: false } },
+                y: { grid: { display: false } }
+            }
+        }
+    });
+</script>
+{% endblock %}

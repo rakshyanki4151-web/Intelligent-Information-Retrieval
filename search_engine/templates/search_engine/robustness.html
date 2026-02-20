@@ -1,0 +1,279 @@
+{% extends 'search_engine/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-50 pb-12">
+    <!-- Header Section -->
+    <div class="bg-indigo-900 text-white pt-12 pb-20 shadow-lg mb-[-4rem]">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                <div>
+                    <h1 class="text-4xl font-bold mb-2">Scientific Robustness Suite</h1>
+                    <p class="text-indigo-200 text-lg max-w-2xl">
+                        Validating model edge-case handling across 25+ specialized scenarios including short inputs,
+                        ambiguous text, and noisy data to ensure production readiness.
+                    </p>
+                </div>
+                <div class="flex gap-3">
+                    <a href="{% url 'search_engine:metrics' %}"
+                        class="bg-white/10 hover:bg-white/20 text-white px-5 py-2.5 rounded-xl backdrop-blur-md border border-white/20 transition-all flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+                            </path>
+                        </svg>
+                        Performance Metrics
+                    </a>
+                    <button id="run-suite-btn"
+                        class="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-2.5 rounded-xl font-bold shadow-xl shadow-emerald-500/20 transition-all flex items-center gap-2 group">
+                        <span class="group-hover:scale-110 transition-transform">▶</span>
+                        Run Stress Test
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4">
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div
+                class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center">
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Overall Health</span>
+                <div id="accuracy-value" class="text-4xl font-black text-indigo-600 mb-1">--%</div>
+                <div id="pass-ratio" class="text-sm text-gray-500 font-medium">Click Run to Start</div>
+            </div>
+
+            <div
+                class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center">
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Model Certainty</span>
+                <div id="confidence-value" class="text-4xl font-black text-emerald-500 mb-1">--%</div>
+                <div class="text-sm text-gray-500 font-medium text-center">Avg. Prediction Probability</div>
+            </div>
+
+            <div
+                class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center">
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Testing Coverage</span>
+                <div class="text-4xl font-black text-slate-800 mb-1">25+</div>
+                <div class="text-sm text-gray-500 font-medium">Edge Case Scenarios</div>
+            </div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div
+            class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 mb-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-4 w-full md:w-auto">
+                <span class="text-sm font-bold text-gray-600 min-w-max">FILTER RESULTS:</span>
+                <div class="relative w-full">
+                    <select id="type-filter"
+                        class="appearance-none bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-xl focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 pr-10 outline-none">
+                        <option value="all">Every Test Category</option>
+                        <option value="Short Input">Short Inputs</option>
+                        <option value="Ambiguous">Ambiguous Cases</option>
+                        <option value="Edge Case">Edge Cases (Noise)</option>
+                        <option value="Long Input">Long Descriptions</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div id="status-counts" class="flex gap-4 text-sm font-semibold">
+                <span class="text-emerald-600 bg-emerald-50 px-3 py-1 rounded-lg">Passed: 0</span>
+                <span class="text-rose-600 bg-rose-50 px-3 py-1 rounded-lg">Failed: 0</span>
+            </div>
+        </div>
+
+        <!-- Table Card -->
+        <div class="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-gray-100 overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse" id="results-table">
+                    <thead>
+                        <tr class="bg-slate-50 border-b border-gray-100">
+                            <th
+                                class="px-6 py-4 text-xs font-bold text-gray-400 uppercase tracking-wider w-32 text-center">
+                                Status</th>
+                            <th class="px-6 py-4 text-xs font-bold text-gray-400 uppercase tracking-wider w-40">Category
+                            </th>
+                            <th class="px-6 py-4 text-xs font-bold text-gray-400 uppercase tracking-wider">Scenario /
+                                Input</th>
+                            <th class="px-6 py-4 text-xs font-bold text-gray-400 uppercase tracking-wider">Metrics</th>
+                        </tr>
+                    </thead>
+                    <tbody id="results-body" class="divide-y divide-gray-50">
+                        <tr>
+                            <td colspan="4" class="px-6 py-20 text-center">
+                                <div class="flex flex-col items-center gap-4">
+                                    <div class="w-16 h-16 bg-indigo-50 rounded-full flex items-center justify-center">
+                                        <svg class="w-8 h-8 text-indigo-400" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.644.322a6 6 0 01-3.86.517l-2.387-.477a2 2 0 00-1.022.547l-1.168 1.168a2 2 0 002.828 2.828l1.168-1.168a2 2 0 00.547-1.022l.477-2.387a6 6 0 00-.517-3.86l-.322-.644a6 6 0 01-.517-3.86l.477-2.387a2 2 0 00-.547-1.022l-1.168-1.168a2 2 0 00-2.828-2.828l1.168 1.168a2 2 0 001.022.547l2.387.477a6 6 0 003.86-.517l.644-.322a6 6 0 013.86-.517l2.387.477a2 2 0 001.022-.547l1.168-1.168a2 2 0 00-2.828-2.828l-1.168 1.168z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <p class="text-gray-400 font-medium">No tests run yet. Hit the green button to begin
+                                        the validation cycle.</p>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Loader Modal Overlay -->
+<div id="loader-overlay"
+    class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 hidden flex items-center justify-center">
+    <div class="bg-white p-8 rounded-3xl shadow-2xl text-center max-w-sm mx-4">
+        <div class="relative w-20 h-20 mx-auto mb-6">
+            <div class="absolute inset-0 rounded-full border-4 border-indigo-100"></div>
+            <div class="absolute inset-0 rounded-full border-4 border-t-indigo-600 animate-spin"></div>
+        </div>
+        <h3 class="text-xl font-bold text-slate-800 mb-2">Analyzing Robustness</h3>
+        <p class="text-gray-500">Executing 25+ adversarial test cases against the model estimators...</p>
+    </div>
+</div>
+
+<style>
+    .animate-spin {
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .hover-glow:hover {
+        box-shadow: 0 0 15px rgba(99, 102, 241, 0.2);
+    }
+</style>
+
+<script>
+    document.getElementById('run-suite-btn').addEventListener('click', async function () {
+        const btn = this;
+        const loader = document.getElementById('loader-overlay');
+        const resultsBody = document.getElementById('results-body');
+
+        btn.disabled = true;
+        loader.classList.remove('hidden');
+        loader.classList.add('flex');
+
+        try {
+            const response = await fetch('/classifier/robustness/run/');
+            const data = await response.json();
+
+            if (data.status === 'success') {
+                updateDashboard(data);
+            } else {
+                alert('Error running tests: ' + data.error);
+            }
+        } catch (e) {
+            console.error(e);
+            alert('Failed to connect to testing server.');
+        } finally {
+            btn.disabled = false;
+            loader.classList.add('hidden');
+            loader.classList.remove('flex');
+        }
+    });
+
+
+
+    function updateDashboard(data) {
+        const { summary, results } = data;
+
+        // Update dashboard values
+        document.getElementById('accuracy-value').innerText = summary.accuracy + '%';
+        document.getElementById('pass-ratio').innerText = `${summary.passed} / ${summary.total} Cases Passed`;
+        document.getElementById('confidence-value').innerText = summary.avg_confidence + '%';
+        document.getElementById('status-counts').innerHTML =
+            `<span class="text-emerald-600 bg-emerald-50 px-3 py-1 rounded-lg">Passed: ${summary.passed}</span>
+             <span class="text-rose-600 bg-rose-50 px-3 py-1 rounded-lg">Failed: ${summary.failed}</span>`;
+
+        renderTable(results);
+        window.allResults = results;
+    }
+
+    function renderTable(results) {
+        const resultsBody = document.getElementById('results-body');
+        resultsBody.innerHTML = '';
+
+        results.forEach(res => {
+            const row = document.createElement('tr');
+            row.className = res.pass ? 'hover:bg-slate-50 transition-colors' : 'bg-rose-50/30 hover:bg-rose-50 transition-colors';
+
+            const meterColor = res.max_prob_value > 70 ? 'bg-emerald-500' : (res.max_prob_value > 40 ? 'bg-amber-500' : 'bg-rose-500');
+            const textColor = res.max_prob_value > 70 ? 'text-emerald-600' : (res.max_prob_value > 40 ? 'text-amber-600' : 'text-rose-600');
+            const badgeClass = res.pass
+                ? 'bg-emerald-100 text-emerald-700'
+                : 'bg-rose-100 text-rose-700';
+
+            row.innerHTML = `
+                <td class="px-6 py-5 text-center">
+                    <span class="inline-flex items-center justify-center px-4 py-1.5 rounded-full text-xs font-black tracking-wide uppercase ${badgeClass}">
+                        ${res.pass ? 'PASS' : 'FAIL'}
+                    </span>
+                </td>
+                <td class="px-6 py-5">
+                    <span class="px-2.5 py-1 bg-slate-100 border border-slate-200 text-slate-600 text-[10px] font-black uppercase rounded-md tracking-tighter">
+                        ${res.case.type}
+                    </span>
+                </td>
+                <td class="px-6 py-5">
+                    <div class="flex flex-col gap-1">
+                        <span class="text-slate-800 font-bold leading-tight line-clamp-2">${res.case.input || '<em>(Empty Input)</em>'}</span>
+                        <span class="text-slate-400 text-xs italic">${res.case.description}</span>
+                        <div class="mt-2 flex flex-wrap gap-2">
+                            <span class="text-[10px] font-bold text-slate-400 uppercase">Target:</span>
+                            <span class="px-2 py-0.5 bg-indigo-50 text-indigo-600 rounded text-[10px] font-bold">
+                                ${res.case.expected.join(', ') || 'NONE'}
+                            </span>
+                            <span class="text-[10px] font-bold text-slate-400 uppercase ml-2">Prediction:</span>
+                            <span class="px-2 py-0.5 ${res.pass ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600'} rounded text-[10px] font-bold">
+                                ${res.predicted.join(', ') || 'NONE'}
+                            </span>
+                        </div>
+                    </div>
+                </td>
+                <td class="px-6 py-5 min-w-[140px]">
+                    <div class="flex flex-col gap-2">
+                        <div class="flex justify-between items-end">
+                            <span class="text-[10px] font-black text-slate-400 uppercase">Certainty</span>
+                            <span class="text-sm font-black ${textColor}">${res.max_prob_value}%</span>
+                        </div>
+                        <div class="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
+                            <div class="${meterColor} h-full transition-all duration-1000" style="width: ${res.max_prob_value}%"></div>
+                        </div>
+                        <span class="text-[10px] font-bold text-slate-400 text-right capitalize">${res.confidence} confidence</span>
+                    </div>
+                </td>
+            `;
+
+            resultsBody.appendChild(row);
+        });
+    }
+
+    document.getElementById('type-filter').addEventListener('change', function () {
+        const type = this.value;
+        if (!window.allResults) return;
+
+        const filtered = type === 'all'
+            ? window.allResults
+            : window.allResults.filter(r => r.case.type === type);
+
+        renderTable(filtered);
+    });
+</script>
+{% endblock %}

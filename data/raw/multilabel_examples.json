@@ -1,0 +1,250 @@
+{
+    "multi_label_examples": {
+        "business_health": [
+            {
+                "text": "Pharmaceutical giant Pfizer reports record quarterly profits as new weight-loss drug gains FDA approval, sending stock prices soaring 15% in morning trading.",
+                "labels": [
+                    "business",
+                    "health"
+                ],
+                "explanation": "Combines corporate financial performance with medical/health product approval"
+            },
+            {
+                "text": "Healthcare insurance companies face massive losses as new regulations require coverage of mental health services, forcing industry-wide restructuring and layoffs.",
+                "labels": [
+                    "business",
+                    "health"
+                ],
+                "explanation": "Insurance business impact from healthcare policy changes"
+            },
+            {
+                "text": "Telemedicine startup raises $500 million in Series C funding to expand virtual doctor consultations across rural America, addressing healthcare accessibility gaps.",
+                "labels": [
+                    "business",
+                    "health"
+                ],
+                "explanation": "Business investment in healthcare technology"
+            },
+            {
+                "text": "Major hospital chains report bankruptcy filings as rising operational costs and nurse shortages create unsustainable financial pressures across the healthcare sector.",
+                "labels": [
+                    "business",
+                    "health"
+                ],
+                "explanation": "Healthcare industry financial crisis"
+            },
+            {
+                "text": "Biotech company stock crashes 40% after clinical trial failure for experimental Alzheimer's treatment, wiping out $3 billion in market value overnight.",
+                "labels": [
+                    "business",
+                    "health"
+                ],
+                "explanation": "Medical research failure impacting business/markets"
+            },
+            {
+                "text": "Amazon announces acquisition of primary care provider One Medical for $3.9 billion, expanding tech giant's footprint in healthcare delivery services.",
+                "labels": [
+                    "business",
+                    "health"
+                ],
+                "explanation": "Corporate merger in healthcare sector"
+            },
+            {
+                "text": "Medical device manufacturer recalls defective pacemakers affecting 50,000 patients, facing potential billion-dollar lawsuits and regulatory sanctions from FDA.",
+                "labels": [
+                    "business",
+                    "health"
+                ],
+                "explanation": "Product safety issue with business and health implications"
+            },
+            {
+                "text": "Private equity firms invest heavily in dental clinic chains, raising concerns about profit-driven care compromising patient treatment quality and accessibility.",
+                "labels": [
+                    "business",
+                    "health"
+                ],
+                "explanation": "Business investment affecting healthcare delivery"
+            },
+            {
+                "text": "Gym membership sales surge 35% as employers offer wellness program subsidies to reduce healthcare costs and improve worker productivity.",
+                "labels": [
+                    "business",
+                    "health"
+                ],
+                "explanation": "Fitness industry growth tied to corporate health initiatives"
+            },
+            {
+                "text": "Generic drug manufacturers face antitrust investigation for price-fixing schemes that inflated medication costs by 1000%, affecting millions of patients nationwide.",
+                "labels": [
+                    "business",
+                    "health"
+                ],
+                "explanation": "Business practices impacting healthcare affordability"
+            }
+        ],
+        "business_entertainment": [
+            {
+                "text": "Disney reports streaming subscriber losses for third consecutive quarter, prompting 7,000 layoffs across film studios and theme park divisions.",
+                "labels": [
+                    "business",
+                    "entertainment"
+                ],
+                "explanation": "Entertainment company financial performance and corporate restructuring"
+            },
+            {
+                "text": "Taylor Swift's Eras Tour generates $2 billion in ticket revenue, becoming highest-grossing concert series in history and boosting local economies across 50 cities.",
+                "labels": [
+                    "business",
+                    "entertainment"
+                ],
+                "explanation": "Entertainment event with major economic impact"
+            },
+            {
+                "text": "Hollywood writers and actors strike for 148 days over streaming residuals and AI concerns, costing entertainment industry estimated $5 billion in lost production.",
+                "labels": [
+                    "business",
+                    "entertainment"
+                ],
+                "explanation": "Labor dispute affecting entertainment business"
+            },
+            {
+                "text": "Netflix stock plummets 35% after announcing password-sharing crackdown backfires, losing 2 million subscribers and $15 billion in market capitalization.",
+                "labels": [
+                    "business",
+                    "entertainment"
+                ],
+                "explanation": "Streaming business strategy impacting financial performance"
+            },
+            {
+                "text": "Warner Bros. Discovery writes down $9 billion in assets, cancels completed films for tax breaks, sparking outrage among filmmakers and industry professionals.",
+                "labels": [
+                    "business",
+                    "entertainment"
+                ],
+                "explanation": "Corporate financial decisions affecting entertainment content"
+            },
+            {
+                "text": "Video game industry layoffs exceed 10,000 workers as major publishers prioritize live-service games over single-player experiences, reshaping development landscape.",
+                "labels": [
+                    "business",
+                    "entertainment"
+                ],
+                "explanation": "Gaming industry business strategy and workforce impact"
+            },
+            {
+                "text": "Broadway theaters report record-breaking $1.8 billion season revenue as post-pandemic audiences return, with Hamilton alone grossing $3 million weekly.",
+                "labels": [
+                    "business",
+                    "entertainment"
+                ],
+                "explanation": "Theater industry financial recovery"
+            },
+            {
+                "text": "Spotify raises subscription prices 20% while reducing artist royalty payments, drawing criticism from musicians and antitrust scrutiny from regulators.",
+                "labels": [
+                    "business",
+                    "entertainment"
+                ],
+                "explanation": "Music streaming business model affecting artists"
+            },
+            {
+                "text": "AMC Theatres files Chapter 11 bankruptcy as streaming services and declining attendance force closure of 200 locations nationwide.",
+                "labels": [
+                    "business",
+                    "entertainment"
+                ],
+                "explanation": "Movie theater business crisis"
+            },
+            {
+                "text": "Sony acquires Crunchyroll for $1.2 billion, consolidating anime streaming market and raising concerns about monopolistic control over Japanese animation distribution.",
+                "labels": [
+                    "business",
+                    "entertainment"
+                ],
+                "explanation": "Corporate acquisition in entertainment sector"
+            }
+        ],
+        "health_entertainment": [
+            {
+                "text": "Professional athletes speak out about mental health struggles, with Olympic gymnast Simone Biles withdrawing from competition to prioritize psychological well-being.",
+                "labels": [
+                    "health",
+                    "entertainment"
+                ],
+                "explanation": "Sports/entertainment figure addressing mental health"
+            },
+            {
+                "text": "Documentary exploring America's opioid crisis wins Oscar, featuring interviews with addiction survivors and families devastated by pharmaceutical company negligence.",
+                "labels": [
+                    "health",
+                    "entertainment"
+                ],
+                "explanation": "Entertainment content focused on health crisis"
+            },
+            {
+                "text": "Celebrity chef Jamie Oliver launches campaign against childhood obesity, producing cooking shows teaching families healthy meal preparation on limited budgets.",
+                "labels": [
+                    "health",
+                    "entertainment"
+                ],
+                "explanation": "Entertainment personality promoting health initiatives"
+            },
+            {
+                "text": "Netflix series '13 Reasons Why' linked to increased teen suicide rates by researchers, prompting mental health warnings and content modifications.",
+                "labels": [
+                    "health",
+                    "entertainment"
+                ],
+                "explanation": "Entertainment content affecting mental health outcomes"
+            },
+            {
+                "text": "Professional esports players suffer repetitive strain injuries and burnout, leading to mandatory health breaks and ergonomic requirements in competitive gaming.",
+                "labels": [
+                    "health",
+                    "entertainment"
+                ],
+                "explanation": "Gaming entertainment causing health issues"
+            },
+            {
+                "text": "Broadway star reveals cancer diagnosis during performance, using platform to advocate for early screening and healthcare access for performing artists.",
+                "labels": [
+                    "health",
+                    "entertainment"
+                ],
+                "explanation": "Entertainment figure sharing health journey"
+            },
+            {
+                "text": "Music festival implements harm reduction strategies including drug testing and medical tents after overdose deaths, balancing entertainment with public health.",
+                "labels": [
+                    "health",
+                    "entertainment"
+                ],
+                "explanation": "Entertainment event addressing health safety"
+            },
+            {
+                "text": "Reality TV show 'The Biggest Loser' faces criticism from medical experts for promoting unhealthy rapid weight loss and contributing to eating disorders.",
+                "labels": [
+                    "health",
+                    "entertainment"
+                ],
+                "explanation": "Entertainment program with health implications"
+            },
+            {
+                "text": "Professional dancers develop chronic pain and eating disorders due to industry pressures, prompting calls for better healthcare support in performing arts.",
+                "labels": [
+                    "health",
+                    "entertainment"
+                ],
+                "explanation": "Entertainment industry health crisis"
+            },
+            {
+                "text": "Meditation and wellness apps featuring celebrity voices generate $4 billion annually, as stars like LeBron James promote mental health through guided relaxation.",
+                "labels": [
+                    "health",
+                    "entertainment"
+                ],
+                "explanation": "Entertainment figures in wellness/health products"
+            }
+        ]
+    }
+}

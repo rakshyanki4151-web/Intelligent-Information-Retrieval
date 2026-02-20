@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Coventry Publications{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --secondary: #64748b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .nav-gradient {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+        }
+
+        .active-link {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 0.5rem;
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body class="bg-slate-50 min-h-screen flex flex-col">
+    <nav class="nav-gradient shadow-lg text-white sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-3">
+                    <span class="text-2xl">🎓</span>
+                    <a href="{% url 'search_engine:index' %}" class="font-bold text-xl tracking-tight">Coventry
+                        Publications</a>
+                </div>
+                <div class="hidden lg:flex items-center space-x-1">
+                    <a href="{% url 'search_engine:index' %}"
+                        class="px-3 py-2 text-sm font-medium hover:bg-white/10 rounded-lg transition {% if request.resolver_match.url_name == 'index' %}active-link{% endif %}">Search</a>
+                    <a href="{% url 'search_engine:classifier_home' %}"
+                        class="px-3 py-2 text-sm font-medium hover:bg-white/10 rounded-lg transition {% if 'classifier' in request.path %}active-link{% endif %}">Classifier</a>
+                    <a href="{% url 'search_engine:crawler' %}"
+                        class="px-3 py-2 text-sm font-medium hover:bg-white/10 rounded-lg transition {% if request.resolver_match.url_name == 'crawler' %}active-link{% endif %}">Crawler</a>
+                </div>
+                <div class="lg:hidden">
+                    <button id="mobile-menu-button" class="p-2 rounded-lg hover:bg-white/10 transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden lg:hidden bg-indigo-700 px-4 pt-2 pb-4 space-y-1 shadow-inner">
+            <a href="{% url 'search_engine:index' %}"
+                class="block px-3 py-2 rounded-md text-base font-medium hover:bg-white/10">Search</a>
+            <a href="{% url 'search_engine:classifier_home' %}"
+                class="block px-3 py-2 rounded-md text-base font-medium hover:bg-white/10">Classifier</a>
+            <a href="{% url 'search_engine:crawler' %}"
+                class="block px-3 py-2 rounded-md text-base font-medium hover:bg-white/10">Crawler</a>
+        </div>
+    </nav>
+
+    {% if '/classifier/' in request.path %}
+    <div class="bg-white border-b border-slate-200 shadow-sm overflow-x-auto">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center space-x-6 h-12 text-sm font-medium whitespace-nowrap">
+                <a href="{% url 'search_engine:classifier_home' %}"
+                    class="{% if request.resolver_match.url_name == 'classifier_home' %}text-indigo-600 border-b-2 border-indigo-600{% else %}text-slate-500 hover:text-slate-800{% endif %} flex items-center py-3">Home</a>
+                <a href="{% url 'search_engine:classify' %}"
+                    class="{% if request.resolver_match.url_name == 'classify' %}text-indigo-600 border-b-2 border-indigo-600{% else %}text-slate-500 hover:text-slate-800{% endif %} flex items-center py-3">Prediction</a>
+                <a href="{% url 'search_engine:metrics' %}"
+                    class="{% if request.resolver_match.url_name == 'metrics' %}text-indigo-600 border-b-2 border-indigo-600{% else %}text-slate-500 hover:text-slate-800{% endif %} flex items-center py-3">Dashboard</a>
+                <a href="{% url 'search_engine:dataset_stats' %}"
+                    class="{% if request.resolver_match.url_name == 'dataset_stats' %}text-indigo-600 border-b-2 border-indigo-600{% else %}text-slate-500 hover:text-slate-800{% endif %} flex items-center py-3">Dataset</a>
+                <a href="{% url 'search_engine:robustness' %}"
+                    class="{% if request.resolver_match.url_name == 'robustness' %}text-indigo-600 border-b-2 border-indigo-600{% else %}text-slate-500 hover:text-slate-800{% endif %} flex items-center py-3">Robustness</a>
+                <a href="{% url 'search_engine:export_center' %}"
+                    class="{% if request.resolver_match.url_name == 'export_center' %}text-indigo-600 border-b-2 border-indigo-600{% else %}text-slate-500 hover:text-slate-800{% endif %} flex items-center py-3">Exports</a>
+                <a href="{% url 'search_engine:about' %}"
+                    class="{% if request.resolver_match.url_name == 'about' %}text-indigo-600 border-b-2 border-indigo-600{% else %}text-slate-500 hover:text-slate-800{% endif %} flex items-center py-3">About</a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <main class="flex-grow">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800 text-center">
+        <div class="container mx-auto px-4">
+            <p class="text-sm font-bold text-white mb-2">🎓 Coventry Publications</p>
+            <p class="text-xs">&copy; 2025 Coventry University. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+        if (btn && menu) { btn.addEventListener('click', () => { menu.classList.toggle('hidden'); }); }
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+
+</html>

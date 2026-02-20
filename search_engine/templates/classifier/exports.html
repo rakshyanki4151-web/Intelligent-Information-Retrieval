@@ -1,0 +1,64 @@
+{% extends 'search_engine/base.html' %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="mb-12">
+        <h1 class="text-3xl font-bold text-slate-800 tracking-tight">Export & Documentation Center</h1>
+        <p class="text-slate-500 mt-2">Download datasets, professional reports, and serialized model files.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- 1. PDF Report -->
+        <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col h-full">
+            <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mb-6">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800 mb-3">Portfolio PDF Report</h3>
+            <p class="text-slate-500 mb-8 text-sm flex-grow">A professional multi-page report including executive
+                summary, metrics, and dataset statistics for academic submission.</p>
+            <a href="{% url 'search_engine:download_pdf' %}"
+                class="w-full py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl text-center shadow-lg shadow-indigo-100 transition">
+                Download PDF
+            </a>
+        </div>
+
+        <!-- 2. CSV Dataset (Submission Ready) -->
+        <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col h-full">
+            <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-6">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800 mb-3">Binary Dataset (CSV)</h3>
+            <p class="text-slate-500 mb-8 text-sm flex-grow">A professional multi-label corpus with **1/0 indicators**
+                for each category. Standard format for MSc Data Science auditing.</p>
+            <a href="{% url 'search_engine:download_csv' %}"
+                class="w-full py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-2xl text-center shadow-lg shadow-emerald-100 transition">
+                Download CSV
+            </a>
+        </div>
+
+        <!-- 3. Model Files -->
+        <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col h-full">
+            <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-6">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800 mb-3">Model Bundle (.pkl)</h3>
+            <p class="text-slate-500 mb-8 text-sm flex-grow">Export the trained MultinomialNB model and TF-IDF
+                vectorizer for programmatic use in other applications.</p>
+            <a href="{% url 'search_engine:download_model' %}"
+                class="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-2xl text-center shadow-lg shadow-blue-100 transition">
+                Download Bundle
+            </a>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

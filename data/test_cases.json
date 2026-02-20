@@ -1,0 +1,224 @@
+[
+    {
+        "id": "short_1",
+        "type": "Short Input",
+        "input": "Stock market trading",
+        "expected": [
+            "business"
+        ],
+        "description": "Simple short business term"
+    },
+    {
+        "id": "short_2",
+        "type": "Short Input",
+        "input": "New movie release",
+        "expected": [
+            "entertainment"
+        ],
+        "description": "Simple short entertainment term"
+    },
+    {
+        "id": "short_3",
+        "type": "Short Input",
+        "input": "Cancer hospital treatment",
+        "expected": [
+            "health"
+        ],
+        "description": "Simple short health term"
+    },
+    {
+        "id": "stopwords_1",
+        "type": "Stopwords",
+        "input": "The very good and amazing movie was quite entertaining indeed",
+        "expected": [
+            "entertainment"
+        ],
+        "description": "Loaded with common stopwords"
+    },
+    {
+        "id": "special_1",
+        "type": "Special Chars",
+        "input": "Apple's CEO said: 'Innovation is the key! [2025]'",
+        "expected": [
+            "business"
+        ],
+        "description": "Punctuation, quotes, and brackets"
+    },
+    {
+        "id": "ambiguous_1",
+        "type": "Ambiguous",
+        "input": "Medical company stocks are rising after the merger",
+        "expected": [
+            "business",
+            "health"
+        ],
+        "description": "Covers both business and health"
+    },
+    {
+        "id": "ambiguous_2",
+        "type": "Ambiguous",
+        "input": "Netflix announces new healthcare documentary series",
+        "expected": [
+            "entertainment",
+            "health"
+        ],
+        "description": "Covers entertainment and health"
+    },
+    {
+        "id": "edge_1",
+        "type": "Edge Case",
+        "input": "1234567890 !!!",
+        "expected": [],
+        "description": "Numbers and symbols only"
+    },
+    {
+        "id": "edge_2",
+        "type": "Edge Case",
+        "input": "",
+        "expected": [],
+        "description": "Empty string"
+    },
+    {
+        "id": "long_1",
+        "type": "Long Input",
+        "input": "The global economy is facing unprecedented challenges as inflation rates soar across major markets. Central banks are responding by raising interest rates, which impact consumer spending and corporate investment. Meanwhile, technology firms are reporting mixed earnings results, with some benefiting from AI advancements while others struggle with supply chain disruptions. Investors are closely watching the Federal Reserve's next moves to gauge the future trajectory of the stock market and international trade agreements.",
+        "expected": [
+            "business"
+        ],
+        "description": "Paragraph length business text"
+    },
+    {
+        "id": "long_2",
+        "type": "Long Input",
+        "input": "Recent clinical trials have shown promising results for a new gene therapy targeting rare neurological disorders. Researchers found that the treatment significantly improved motor functions in patients who previously had limited options. The study, published in the Journal of Medicine, emphasizes the importance of early diagnosis and personalized healthcare strategies. Public health officials are now discussing the logistics of distributing the vaccine and ensuring equitable access across different socio-economic groups.",
+        "expected": [
+            "health"
+        ],
+        "description": "Paragraph length health/scientific text"
+    },
+    {
+        "id": "url_1",
+        "type": "Edge Case",
+        "input": "Visit https://google.com for more information on business trends",
+        "expected": [
+            "business"
+        ],
+        "description": "Input containing URLs"
+    },
+    {
+        "id": "extreme_short",
+        "type": "Short Input",
+        "input": "Stocks",
+        "expected": [
+            "business"
+        ],
+        "description": "Single word input"
+    },
+    {
+        "id": "mixed_case",
+        "type": "Mixed Case",
+        "input": "hEaLtHcArE pRoViDeRs and HoSpItAl MaNaGeMeNt",
+        "expected": [
+            "health"
+        ],
+        "description": "Sarcastic/Mixed case input"
+    },
+    {
+        "id": "noisy_1",
+        "type": "Special Chars",
+        "input": "#### BUSINESS #### $$$$$ MONEY $$$$$",
+        "expected": [
+            "business"
+        ],
+        "description": "Heavy symbols around keywords"
+    },
+    {
+        "id": "ambiguous_3",
+        "type": "Ambiguous",
+        "input": "The film about the rise of a Silicon Valley startup was a box office hit",
+        "expected": [
+            "business",
+            "entertainment"
+        ],
+        "description": "Movies about business"
+    },
+    {
+        "id": "typo_1",
+        "type": "Robustness",
+        "input": "Invesment opurtunities in medicl technolgy",
+        "expected": [
+            "business",
+            "health"
+        ],
+        "description": "Contains spelling mistakes"
+    },
+    {
+        "id": "redundant_1",
+        "type": "Short Input",
+        "input": "business business business business",
+        "expected": [
+            "business"
+        ],
+        "description": "Word repetition"
+    },
+    {
+        "id": "clinical_1",
+        "type": "Long Input",
+        "input": "Symptoms include chronic fatigue, elevated heart rate, and metabolic imbalances. Physician consultation is advised for diagnostic screening. Pharmaceutical interventions may include beta-blockers or specialized dietary supplements to mitigate systemic inflammation and boost immune response resilience.",
+        "expected": [
+            "health"
+        ],
+        "description": "Clinical/Medical jargon"
+    },
+    {
+        "id": "fintech_1",
+        "type": "Ambiguous",
+        "input": "Cryptocurrency exchange hack results in millions lost for retail investors",
+        "expected": [
+            "business"
+        ],
+        "description": "Negative business news"
+    },
+    {
+        "id": "celeb_1",
+        "type": "Short Input",
+        "input": "Pop star wins Grammy award for best album",
+        "expected": [
+            "entertainment"
+        ],
+        "description": "Celebrity/Music news"
+    },
+    {
+        "id": "theatre_1",
+        "type": "Short Input",
+        "input": "Broadway musical receives standing ovation on opening night",
+        "expected": [
+            "entertainment"
+        ],
+        "description": "Arts and Culture"
+    },
+    {
+        "id": "pandemic_1",
+        "type": "Ambiguous",
+        "input": "Global lockdown causes massive recession and hospital overcrowding",
+        "expected": [
+            "business",
+            "health"
+        ],
+        "description": "Complex global event"
+    },
+    {
+        "id": "sports_1",
+        "type": "Edge Case",
+        "input": "Football team wins the national championship after miracle touchdown",
+        "expected": [],
+        "description": "Out of domain (Sports)"
+    },
+    {
+        "id": "tech_1",
+        "type": "Edge Case",
+        "input": "New CPU architecture improves floating point operations per second",
+        "expected": [],
+        "description": "Out of domain (Pure Tech)"
+    }
+]

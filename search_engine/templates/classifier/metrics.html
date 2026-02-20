@@ -1,0 +1,345 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Performance Dashboard - Coventry Publications</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body {
+            background-color: #f3f4f6;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .metric-card {
+            transition: transform 0.2s;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+
+<body class="p-4 md:p-8">
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800">Model Performance Dashboard</h1>
+                <p class="text-gray-600">Comprehensive evaluation metrics for the Document Classifier</p>
+            </div>
+            <div class="flex gap-3">
+                <a href="{% url 'search_engine:export_csv_metrics' %}"
+                    class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition shadow-md">Download
+                    CSV</a>
+                <a href="{% url 'search_engine:export_json_metrics' %}"
+                    class="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition shadow-md">Download
+                    JSON</a>
+                <a href="{% url 'search_engine:classify' %}"
+                    class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition shadow-md">&larr;
+                    Back to
+                    Classifier</a>
+            </div>
+        </div>
+
+        {% if error %}
+        <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-8 rounded" role="alert">
+            <p class="font-bold">Error</p>
+            <p>{{ error }}</p>
+        </div>
+        {% else %}
+
+        <!-- Overall Metrics -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 metric-card">
+                <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Subset Accuracy</p>
+                <h3 class="text-3xl font-bold text-blue-600">{{ overall.accuracy|floatformat:2 }}%</h3>
+                <p class="text-xs text-gray-400 mt-1">Exact match ratio</p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 metric-card">
+                <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">F1 Score (Micro)</p>
+                <h3 class="text-3xl font-bold text-green-600">{{ overall.f1_micro|floatformat:2 }}%</h3>
+                <p class="text-xs text-gray-400 mt-1">Aggregated performance</p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 metric-card">
+                <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Hamming Loss</p>
+                <h3 class="text-3xl font-bold text-orange-600">{{ overall.hamming_loss|floatformat:4 }}</h3>
+                <p class="text-xs text-gray-400 mt-1">Fraction of wrong labels</p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 metric-card">
+                <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Threshold</p>
+                <h3 class="text-3xl font-bold text-purple-600">{{ overall.threshold|floatformat:0 }}%</h3>
+                <p class="text-xs text-gray-400 mt-1">Decision boundary</p>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            <!-- Left: Table & Confusion Matrices -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden mb-8">
+                    <div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-gray-50">
+                        <h3 class="font-bold text-gray-800">Per-Category Performance</h3>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead class="bg-gray-100 text-xs font-semibold text-gray-500 uppercase">
+                                <tr>
+                                    <th class="px-6 py-4">Category</th>
+                                    <th class="px-6 py-4">Precision</th>
+                                    <th class="px-6 py-4">Recall</th>
+                                    <th class="px-6 py-4">F1-Score</th>
+                                    <th class="px-6 py-4">Support</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-100">
+                                {% for item in per_label_data %}
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="px-6 py-4 font-semibold capitalize">{{ item.label }}</td>
+                                    <td class="px-6 py-4">{{ item.precision|floatformat:4 }}</td>
+                                    <td class="px-6 py-4">{{ item.recall|floatformat:4 }}</td>
+                                    <td class="px-6 py-4">
+                                        <span class="px-3 py-1 rounded-full text-xs font-bold 
+                                            {% if item.f1 > 0.8 %}bg-green-100 text-green-700
+                                            {% elif item.f1 > 0.6 %}bg-yellow-100 text-yellow-700
+                                            {% else %}bg-red-100 text-red-700{% endif %}">
+                                            {{ item.f1|floatformat:4 }}
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 text-gray-500">{{ item.support }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-8">
+                    <div class="flex items-center justify-between mb-6 border-b pb-4">
+                        <h3 class="font-bold text-gray-800 text-lg">Per-Category Confusion Matrices</h3>
+                        <div class="flex items-center gap-4 text-xs font-medium text-gray-500">
+                            <span class="flex items-center gap-1"><span class="w-3 h-3 bg-blue-600 rounded"></span>
+                                Correct</span>
+                            <span class="flex items-center gap-1"><span
+                                    class="w-3 h-3 bg-blue-100 border border-blue-200 rounded"></span> Error</span>
+                        </div>
+                    </div>
+                    <div id="cmContainer" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                        <!-- Matrices injected here -->
+                    </div>
+                    <div
+                        class="mt-6 p-4 bg-gray-50 rounded-xl border border-dashed border-gray-200 text-sm text-gray-600">
+                        <p><strong>Note:</strong> These matrices show the performance for each binary classification
+                            task (One-vs-Rest).
+                            The diagonal cells (Top-Left and Bottom-Right) represent correct predictions (TN and TP).
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Feature Importance -->
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-8 h-fit sticky top-8">
+                    <div class="flex justify-between items-center mb-6 border-b pb-4">
+                        <h3 class="font-bold text-gray-800 text-lg">Keyword Distribution</h3>
+                        <select id="fiSelector"
+                            class="bg-gray-50 border border-gray-200 text-sm rounded-lg p-2 font-semibold text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            {% for item in per_label_data %}
+                            <option value="{{ item.label }}">{{ item.label|title }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div id="fiChart" style="height: 550px;"></div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Data Injection -->
+    {{ heatmaps|json_script:"heatmaps-data" }}
+    {{ feature_importance|json_script:"fi-data" }}
+
+    <script>
+        window.addEventListener('load', function () {
+            // Wait for layout to settle 
+            setTimeout(function () {
+                try {
+                    const heatmapsData = JSON.parse(document.getElementById('heatmaps-data').textContent);
+                    const fiData = JSON.parse(document.getElementById('fi-data').textContent);
+
+                    function renderAllCMs() {
+                        const container = document.getElementById('cmContainer');
+                        if (!container) return;
+                        container.innerHTML = '';
+
+                        // Sorting labels to ensure consistency (Business, Entertainment, Health)
+                        const sortedLabels = Object.keys(heatmapsData).sort();
+
+                        sortedLabels.forEach(label => {
+                            const divId = `cmChart-${label}`;
+                            const card = document.createElement('div');
+                            card.className = 'bg-white rounded-2xl border border-gray-100 p-4 transition hover:shadow-md';
+                            card.innerHTML = `
+                                <div class="text-center mb-4">
+                                    <h4 class="text-sm font-bold text-gray-700 uppercase tracking-wider">
+                                        ${label}
+                                    </h4>
+                                </div>
+                                <div id="${divId}" style="height: 320px; width: 100%;"></div>
+                            `;
+                            container.appendChild(card);
+
+                            const item = heatmapsData[label];
+                            const z = item.z;
+
+                            // Quadrant mapping: 
+                            // z[0][0] = TN, z[0][1] = FP
+                            // z[1][0] = FN, z[1][1] = TP
+                            const labels = [
+                                ['TN', 'FP'],
+                                ['FN', 'TP']
+                            ];
+                            const fullLabels = [
+                                ['True Negative', 'False Positive'],
+                                ['False Negative', 'True Positive']
+                            ];
+
+                            const trace = {
+                                z: z,
+                                x: ['NEG', 'POS'],
+                                y: ['NEG', 'POS'],
+                                type: 'heatmap',
+                                colorscale: [
+                                    [0, '#eff6ff'],   // Lightest blue
+                                    [0.2, '#dbeafe'],
+                                    [0.5, '#60a5fa'],
+                                    [0.8, '#2563eb'],
+                                    [1, '#1e3a8a']    // Darkest blue
+                                ],
+                                showscale: false,
+                                xgap: 4,
+                                ygap: 4,
+                                hoverinfo: 'none'
+                            };
+
+                            const layout = {
+                                title: false,
+                                margin: { l: 60, r: 20, b: 60, t: 30 },
+                                xaxis: {
+                                    title: { text: 'Predicted', font: { size: 10, weight: 'bold' }, standoff: 15 },
+                                    side: 'bottom',
+                                    tickfont: { size: 11, family: 'Inter, sans-serif' },
+                                    fixedrange: true
+                                },
+                                yaxis: {
+                                    title: { text: 'Actual', font: { size: 10, weight: 'bold' }, standoff: 15 },
+                                    tickfont: { size: 11, family: 'Inter, sans-serif' },
+                                    autorange: 'reversed',
+                                    fixedrange: true
+                                },
+                                annotations: [],
+                                paper_bgcolor: 'rgba(0,0,0,0)',
+                                plot_bgcolor: 'rgba(0,0,0,0)'
+                            };
+
+                            // Add annotations for values and labels
+                            let total = 0;
+                            z.forEach(r => r.forEach(v => total += v));
+
+                            let maxVal = 0;
+                            z.forEach(r => r.forEach(v => { if (v > maxVal) maxVal = v; }));
+
+                            for (let i = 0; i < z.length; i++) {
+                                for (let j = 0; j < z[i].length; j++) {
+                                    const val = z[i][j];
+                                    const percentage = ((val / total) * 100).toFixed(1);
+
+                                    // Main count
+                                    layout.annotations.push({
+                                        text: `<span style="font-size: 20px; font-weight: 800;">${val}</span>`,
+                                        x: trace.x[j],
+                                        y: trace.y[i],
+                                        font: { color: val > (maxVal * 0.4) ? 'white' : '#1e3a8a' },
+                                        showarrow: false,
+                                        yshift: 10
+                                    });
+
+                                    // Label (TP, TN, etc)
+                                    layout.annotations.push({
+                                        text: `<span style="font-size: 10px; font-weight: 500; opacity: 0.8;">${labels[i][j]} (${percentage}%)</span>`,
+                                        x: trace.x[j],
+                                        y: trace.y[i],
+                                        font: { color: val > (maxVal * 0.4) ? 'white' : '#1e3a8a' },
+                                        showarrow: false,
+                                        yshift: -15
+                                    });
+                                }
+                            }
+
+                            Plotly.newPlot(divId, [trace], layout, {
+                                responsive: true,
+                                displayModeBar: false,
+                                staticPlot: false
+                            });
+                        });
+                    }
+
+                    function renderFI(label) {
+                        const data = fiData[label];
+                        if (!data) return;
+
+                        const trace = {
+                            x: data.scores,
+                            y: data.words,
+                            type: 'bar',
+                            orientation: 'h',
+                            marker: {
+                                color: '#6366f1',
+                                opacity: 0.8,
+                                line: { color: '#4338ca', width: 1 }
+                            }
+                        };
+
+                        const layout = {
+                            title: { text: `<b>Top Features: ${label.toUpperCase()}</b>`, font: { size: 16, family: 'Inter' } },
+                            margin: { l: 140, r: 20, b: 60, t: 50 },
+                            xaxis: {
+                                title: 'Log Probability Score',
+                                automargin: true,
+                                tickfont: { size: 10 }
+                            },
+                            yaxis: {
+                                automargin: true,
+                                tickfont: { size: 11, family: 'Inter' },
+                                autorange: 'reversed'
+                            },
+                            paper_bgcolor: 'rgba(0,0,0,0)',
+                            plot_bgcolor: 'rgba(0,0,0,0)'
+                        };
+
+                        Plotly.newPlot('fiChart', [trace], layout, { responsive: true, displayModeBar: false });
+                    }
+
+                    if (Object.keys(heatmapsData).length > 0) {
+                        renderAllCMs();
+                        const first = Object.keys(fiData).sort()[0];
+                        if (first) renderFI(first);
+                    }
+
+                    document.getElementById('fiSelector')?.addEventListener('change', (e) => renderFI(e.target.value));
+
+                } catch (e) {
+                    console.error("Dashboard error:", e);
+                }
+            }, 800);
+        });
+    </script>
+</body>
+
+</html>

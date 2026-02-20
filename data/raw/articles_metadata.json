@@ -1,0 +1,638 @@
+{
+  "business": [
+    {
+      "text": "Global tech giants are investing billions in artificial intelligence infrastructure as the race for AI supremacy intensifies. Major companies including Microsoft, Google, and Amazon have announced significant capital expenditure plans for 2025, focusing on data centers and AI chip development. Industry analysts predict this investment wave will reshape the technology landscape over the next decade.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/business-ai-investment-2025",
+      "date": "2024-07-07",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "European Central Bank raises interest rates by 0.25% in response to persistent inflation concerns across the eurozone. The decision marks the bank's continued effort to bring inflation back to its 2% target. Economists warn that higher borrowing costs could slow economic growth in several member states, particularly those with high debt levels.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/markets/europe/ecb-rate-decision-2025",
+      "date": "2025-01-01",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Tesla announces plans to build a new gigafactory in Southeast Asia, marking the company's expansion into emerging markets. The facility, expected to cost $5 billion, will produce electric vehicles specifically designed for Asian consumers. Local governments are competing to host the factory, offering substantial tax incentives and infrastructure support.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/business-tesla-asia-expansion",
+      "date": "2024-04-29",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Major oil companies report record profits despite global push for renewable energy transition. Shell, BP, and ExxonMobil collectively earned over $100 billion in 2024, driven by sustained high energy prices. Environmental groups criticize the profits while shareholders celebrate strong returns on investment.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/energy/oil-profits-2024",
+      "date": "2024-04-29",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Amazon workers in multiple countries stage coordinated strikes demanding better wages and working conditions. The labor action affects warehouses across the United States, United Kingdom, and Germany during the crucial holiday shopping season. Union representatives say the strikes could expand if negotiations with management fail to produce results.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/business-amazon-strikes-2024",
+      "date": "2024-03-21",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "China's economy grows at 5.2% in 2024, exceeding government targets despite ongoing trade tensions and property sector challenges. The growth was driven by strong manufacturing exports and government stimulus measures. However, analysts express concern about the sustainability of this growth amid demographic headwinds and geopolitical uncertainties.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/world/china/gdp-growth-2024",
+      "date": "2024-05-13",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Cryptocurrency markets experience significant volatility as regulatory frameworks tighten globally. Bitcoin and Ethereum prices fluctuate wildly following announcements from the US Securities and Exchange Commission regarding new compliance requirements. Industry leaders call for clearer regulations while maintaining that blockchain technology remains transformative.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/business-crypto-regulation-2025",
+      "date": "2024-11-10",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Global supply chain disruptions ease as shipping costs normalize and port congestion clears. Container shipping rates have fallen by 60% from their pandemic peaks, providing relief to manufacturers and retailers. Logistics experts attribute the improvement to increased vessel capacity and more efficient port operations worldwide.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/supply-chain-recovery-2024",
+      "date": "2024-02-29",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Major banks announce massive job cuts as automation and artificial intelligence reshape the financial services industry. JPMorgan Chase, HSBC, and Deutsche Bank plan to eliminate thousands of positions over the next two years. The banks emphasize that AI will handle routine tasks while human employees focus on complex client relationships.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/business-banking-ai-jobs-2025",
+      "date": "2024-04-02",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Renewable energy investments surpass fossil fuel funding for the first time in history. Global clean energy projects attracted $1.7 trillion in 2024, compared to $1.1 trillion for oil, gas, and coal. The shift reflects growing investor confidence in the energy transition and supportive government policies worldwide.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/energy/renewable-investment-milestone",
+      "date": "2025-01-19",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Luxury goods market shows resilience despite economic uncertainty, with brands like Louis Vuitton and Hermès reporting strong sales growth. The sector benefits from wealthy consumers' continued spending and expansion in Asian markets. Industry analysts predict sustained demand for high-end products even as middle-market retailers struggle.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/business-luxury-market-2024",
+      "date": "2024-03-11",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Food prices surge globally as extreme weather events disrupt agricultural production across multiple continents. Wheat, rice, and corn prices have increased by 25-40% compared to last year. The United Nations warns that rising food costs could push millions more people into food insecurity, particularly in developing nations.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/markets/commodities/food-price-crisis-2024",
+      "date": "2025-01-23",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Pharmaceutical giant Pfizer announces breakthrough in cancer treatment, sending its stock price soaring. The new therapy shows promising results in clinical trials for multiple cancer types. Regulatory approval is expected within 18 months, potentially creating a multi-billion dollar revenue stream for the company.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/business-pfizer-cancer-breakthrough",
+      "date": "2024-06-26",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Commercial real estate markets face continued pressure as remote work trends persist post-pandemic. Office vacancy rates in major cities reach record highs, forcing property owners to convert buildings into residential units. The transformation is reshaping urban landscapes and challenging traditional real estate investment models.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/real-estate-transformation-2025",
+      "date": "2024-10-27",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Electric vehicle sales exceed 15 million units globally in 2024, representing 18% of total car sales. China leads the market with 60% of global EV purchases, while European and North American adoption accelerates. Traditional automakers scramble to expand their electric offerings to compete with Tesla and Chinese manufacturers.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/business-ev-sales-milestone-2024",
+      "date": "2024-10-24",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Semiconductor shortage finally eases as new fabrication plants come online worldwide. Intel, TSMC, and Samsung have invested over $300 billion in expanding chip production capacity. The increased supply helps automotive and consumer electronics manufacturers recover from years of component shortages.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/technology/chip-shortage-ends-2024",
+      "date": "2024-11-09",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Streaming services face subscriber growth challenges as market saturation sets in. Netflix, Disney+, and other platforms report slowing user acquisition and increased churn rates. Companies are exploring advertising-supported tiers and cracking down on password sharing to boost revenue amid intensifying competition.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/business-streaming-slowdown-2025",
+      "date": "2024-06-02",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Global tourism industry rebounds strongly with international arrivals surpassing pre-pandemic levels. Airlines and hotels report record bookings as pent-up travel demand continues. However, overtourism concerns prompt some destinations to implement visitor caps and sustainability measures.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/travel/tourism-recovery-2024",
+      "date": "2024-07-13",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Artificial intelligence startups attract record venture capital funding despite broader tech sector slowdown. Companies developing generative AI tools and enterprise AI solutions raise billions in new financing rounds. Investors bet that AI will drive the next wave of technological innovation and economic growth.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/business-ai-startup-funding-2024",
+      "date": "2024-09-28",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Coffee prices hit decade highs as climate change impacts major growing regions in Brazil and Vietnam. Extreme weather patterns reduce crop yields, creating supply concerns for the world's most popular beverage. Major coffee chains consider price increases to offset rising commodity costs.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/markets/commodities/coffee-price-surge-2025",
+      "date": "2024-11-18",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Retail apocalypse continues as major department store chains file for bankruptcy protection. Changing consumer preferences and e-commerce competition force traditional retailers to close hundreds of locations. The closures accelerate the transformation of shopping malls into mixed-use developments.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/business-retail-bankruptcies-2024",
+      "date": "2024-09-20",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Hydrogen economy gains momentum as governments and corporations invest in clean fuel infrastructure. Major energy companies announce plans for hydrogen production facilities and distribution networks. Proponents argue hydrogen will be crucial for decarbonizing heavy industry and long-distance transportation.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/energy/hydrogen-investment-wave",
+      "date": "2024-07-19",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Cybersecurity spending reaches new heights as companies respond to escalating digital threats. Global cybersecurity market is projected to exceed $300 billion annually by 2026. High-profile data breaches and ransomware attacks drive organizations to prioritize security investments and hire specialized personnel.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/business-cybersecurity-spending-2025",
+      "date": "2024-04-15",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Fast fashion industry faces mounting pressure over environmental and labor practices. Major brands commit to sustainability initiatives and supply chain transparency following consumer activism and regulatory scrutiny. Critics question whether these commitments represent genuine change or merely greenwashing.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/retail/fast-fashion-sustainability",
+      "date": "2024-01-11",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Space economy expands rapidly as private companies launch commercial satellites and space tourism ventures. SpaceX, Blue Origin, and other firms compete for government contracts and private customers. The growing industry creates thousands of jobs and drives innovation in aerospace technology.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/business-space-economy-2024",
+      "date": "2024-03-25",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Central banks worldwide explore digital currency initiatives as cash usage declines. China leads with its digital yuan rollout, while the Federal Reserve and European Central Bank conduct pilot programs. Experts debate the implications for monetary policy, privacy, and financial system stability.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/technology/digital-currency-developments",
+      "date": "2024-04-29",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Gig economy workers win landmark legal victories securing employee benefits and protections. Courts in multiple jurisdictions rule that platform companies must classify workers as employees rather than independent contractors. The decisions could fundamentally reshape business models for Uber, DoorDash, and similar companies.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/business-gig-economy-ruling-2025",
+      "date": "2024-10-03",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Biotechnology sector experiences investment boom as gene therapy and personalized medicine advance. Companies developing CRISPR-based treatments and mRNA vaccines attract billions in funding. Regulatory agencies work to establish frameworks for approving these novel therapeutic approaches.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/healthcare/biotech-investment-surge",
+      "date": "2024-04-16",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Global shipping industry commits to zero emissions by 2050, announcing massive fleet modernization plans. Major shipping lines will invest in alternative fuels including ammonia, hydrogen, and methanol. The transition represents one of the largest industrial transformations in history, with costs estimated in the hundreds of billions.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/business-shipping-emissions-pledge",
+      "date": "2025-01-03",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Quantum computing achieves significant milestone as IBM and Google demonstrate practical applications. The breakthrough could revolutionize drug discovery, financial modeling, and cryptography. Tech giants race to develop commercially viable quantum systems while addressing technical challenges around error correction and scalability.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/technology/quantum-computing-breakthrough",
+      "date": "2024-07-06",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    }
+  ],
+  "entertainment": [
+    {
+      "text": "Streaming giant Netflix announces record-breaking viewership for its latest original series, surpassing 200 million hours watched in the first week. The show's success demonstrates the platform's continued dominance in original content production. Industry analysts credit the series' diverse cast and compelling storytelling for its widespread appeal across global markets.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/entertainment-netflix-record-2025",
+      "date": "2024-08-21",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Taylor Swift's latest world tour becomes the highest-grossing concert series in history, generating over $2 billion in ticket sales. The tour spans five continents and includes 150 shows across 18 months. Economic studies show significant impacts on local economies, with hotels and restaurants reporting substantial revenue increases in tour cities.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/lifestyle/entertainment/swift-tour-record-2024",
+      "date": "2024-02-12",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Academy Awards ceremony introduces new category for best casting, recognizing the crucial role casting directors play in filmmaking. The decision follows years of lobbying from industry professionals. The first awards in this category will be presented at next year's ceremony, honoring work from the current film year.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/entertainment-oscars-casting-category",
+      "date": "2024-06-29",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Video game industry revenues surpass $200 billion globally as mobile gaming continues explosive growth. Popular titles generate billions in microtransaction revenue while cloud gaming services expand their subscriber bases. Traditional console manufacturers adapt strategies to compete in the evolving digital entertainment landscape.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/technology/gaming-revenue-milestone-2024",
+      "date": "2024-03-14",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Broadway theaters report strongest season in decades with attendance and revenue exceeding pre-pandemic levels. Hit musicals and star-studded revivals draw audiences back to New York's theater district. Producers credit pent-up demand and innovative marketing strategies for the remarkable recovery.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/entertainment-broadway-comeback-2024",
+      "date": "2024-01-14",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "K-pop phenomenon BTS announces reunion tour after members complete mandatory military service. Pre-sale tickets crash multiple websites as millions of fans attempt to secure seats. The group's return is expected to generate hundreds of millions in revenue and boost South Korea's cultural export industry.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/lifestyle/entertainment/bts-reunion-announcement",
+      "date": "2024-07-02",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Major film studios embrace artificial intelligence for visual effects and pre-production planning. Directors and cinematographers use AI tools to visualize scenes before filming begins. However, creative guilds express concerns about job displacement and the technology's impact on artistic authenticity.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/entertainment-ai-filmmaking-2025",
+      "date": "2024-06-29",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Music streaming platforms face artist backlash over royalty payment structures. Major musicians threaten to remove their catalogs unless compensation models change. The dispute highlights ongoing tensions between streaming services, record labels, and artists over revenue distribution in the digital music economy.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/media/streaming-royalty-dispute-2024",
+      "date": "2024-04-22",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Virtual reality concerts attract millions of participants as technology improves and becomes more accessible. Artists perform in digital venues while fans attend from home using VR headsets. The format offers new revenue streams and expands audience reach beyond physical venue limitations.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/entertainment-vr-concerts-2024",
+      "date": "2024-01-12",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Documentary filmmaking experiences renaissance as streaming platforms invest heavily in non-fiction content. Award-winning documentaries tackle climate change, social justice, and political issues. Critics praise the medium's ability to inform and inspire action on pressing global challenges.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/lifestyle/entertainment/documentary-boom-2025",
+      "date": "2024-10-30",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Fashion industry collaborates with entertainment sector on virtual clothing for digital avatars and metaverse platforms. Luxury brands launch digital-only collections selling for thousands of dollars. The trend represents a new frontier in fashion and gaming convergence.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/entertainment-digital-fashion-2025",
+      "date": "2024-08-25",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Independent film festivals adapt to hybrid formats combining in-person screenings with virtual access. The model increases accessibility for global audiences while maintaining the festival atmosphere. Filmmakers appreciate expanded exposure opportunities beyond traditional geographic limitations.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/lifestyle/entertainment/film-festival-evolution",
+      "date": "2025-01-19",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Podcast industry continues rapid growth with advertising revenue projected to exceed $4 billion annually. Celebrity-hosted shows and true crime series dominate listener preferences. Major media companies acquire successful podcast networks to compete in the expanding audio entertainment market.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/entertainment-podcast-growth-2024",
+      "date": "2024-11-18",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Animation studios embrace diverse storytelling as international co-productions increase. Films from Asia, Africa, and Latin America gain prominence at major festivals and awards ceremonies. The shift reflects growing recognition of animation as a universal medium for cultural expression.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/lifestyle/entertainment/animation-diversity-2024",
+      "date": "2024-03-05",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Live music venues struggle with rising operational costs despite strong ticket demand. Smaller clubs face closure as rent, insurance, and equipment expenses increase. Musicians and fans rally to support grassroots venues crucial to developing emerging talent.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/entertainment-venue-crisis-2025",
+      "date": "2024-12-24",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Television networks invest in limited series format as viewers prefer complete stories over long-running shows. The trend reflects changing consumption habits and competition from streaming platforms. Producers appreciate creative freedom and defined endpoints for storytelling.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/media/limited-series-trend-2024",
+      "date": "2025-01-01",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Comic book adaptations dominate box office with superhero films generating billions in global revenue. Studios announce ambitious multi-year plans for interconnected cinematic universes. However, some industry observers warn of audience fatigue with the genre's saturation.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/entertainment-superhero-dominance-2024",
+      "date": "2024-04-29",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Classical music institutions modernize programming to attract younger audiences. Orchestras incorporate contemporary compositions and collaborate with popular artists. The initiatives aim to ensure the art form's relevance and financial sustainability for future generations.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/lifestyle/entertainment/classical-music-evolution",
+      "date": "2024-12-07",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Reality television evolves with interactive formats allowing viewers to influence show outcomes through mobile apps. The technology creates new engagement opportunities and advertising revenue streams. Producers experiment with blending scripted and unscripted elements for hybrid entertainment experiences.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/entertainment-interactive-tv-2025",
+      "date": "2024-05-20",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Book publishing industry adapts to audiobook boom as listening surpasses print sales for some titles. Authors increasingly consider audio performance during writing process. Publishers invest in celebrity narrators and enhanced audio productions to compete in the growing market.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/lifestyle/entertainment/audiobook-revolution-2024",
+      "date": "2024-08-06",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Film preservation efforts intensify as digital formats prove less stable than expected. Archives work to save deteriorating films before content is lost forever. The challenge highlights importance of maintaining multiple format copies for long-term cultural heritage protection.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/entertainment-film-preservation-2024",
+      "date": "2024-09-12",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Theater companies experiment with immersive productions that blur lines between performers and audience. Site-specific performances in unconventional venues create unique experiences. The format attracts new theatergoers seeking interactive entertainment beyond traditional proscenium staging.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/lifestyle/entertainment/immersive-theater-trend",
+      "date": "2024-08-02",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Music festivals implement sustainability initiatives to reduce environmental impact. Organizers ban single-use plastics, use renewable energy, and offset carbon emissions. Festival-goers increasingly prioritize eco-friendly events when making attendance decisions.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/entertainment-festival-sustainability-2025",
+      "date": "2024-03-25",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Esports viewership rivals traditional sports as major tournaments fill stadiums and attract millions of online viewers. Professional gamers earn substantial incomes through prize money and sponsorships. Universities offer esports scholarships recognizing competitive gaming as legitimate athletic pursuit.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/technology/esports-mainstream-2024",
+      "date": "2024-08-08",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Stand-up comedy experiences global expansion as streaming specials introduce comedians to international audiences. Performers tour worldwide, adapting material for different cultural contexts. The art form's accessibility and relatability drive its growing popularity across diverse demographics.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/entertainment-comedy-global-2024",
+      "date": "2024-03-06",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Dance companies incorporate technology into performances using projection mapping and motion sensors. The fusion of traditional choreography with digital elements creates visually stunning productions. Artistic directors balance innovation with preserving dance's essential human expression.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/lifestyle/entertainment/dance-technology-fusion",
+      "date": "2025-01-06",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Biographical films about musicians generate strong box office returns and award recognition. The genre's popularity reflects audience interest in artists' personal stories and cultural impact. Studios develop projects about legendary performers from various musical eras and genres.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/entertainment-music-biopics-2025",
+      "date": "2024-07-21",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Children's entertainment evolves to address contemporary social issues through age-appropriate storytelling. Animated series tackle topics like mental health, diversity, and environmental conservation. Parents and educators praise content that entertains while teaching important values.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/lifestyle/entertainment/childrens-content-evolution",
+      "date": "2024-06-21",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Horror genre experiences creative renaissance with films exploring psychological terror over graphic violence. Directors use horror framework to examine societal anxieties and cultural tensions. Critics celebrate the genre's artistic maturation and mainstream acceptance.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/entertainment-horror-renaissance-2024",
+      "date": "2024-08-29",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Music education programs demonstrate positive impacts on student academic performance and social development. Schools expand arts funding despite budget pressures. Research shows participation in music activities correlates with improved cognitive skills and emotional well-being.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/lifestyle/entertainment/music-education-benefits",
+      "date": "2024-06-20",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    }
+  ],
+  "health": [
+    {
+      "text": "Breakthrough Alzheimer's treatment shows promising results in phase three clinical trials, slowing cognitive decline by 35% in patients. The drug targets amyloid plaques in the brain and represents the most significant advancement in Alzheimer's therapy in decades. Researchers hope regulatory approval will come within the next year, offering new hope to millions of patients worldwide.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/health-alzheimers-breakthrough-2025",
+      "date": "2024-10-29",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Global health organizations warn of rising antibiotic resistance threatening modern medicine's foundation. Common infections become increasingly difficult to treat as bacteria evolve resistance to existing drugs. Experts call for urgent action including new antibiotic development, improved prescribing practices, and enhanced infection prevention measures.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/healthcare/antibiotic-resistance-crisis",
+      "date": "2024-09-26",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Mental health services expand globally as governments recognize psychological well-being as essential healthcare priority. New programs provide accessible counseling and therapy services through digital platforms and community centers. The initiatives aim to address the mental health crisis exacerbated by pandemic isolation and economic stress.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/health-mental-health-expansion-2024",
+      "date": "2024-06-02",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Revolutionary gene therapy cures rare blood disorder in landmark medical achievement. Patients with sickle cell disease show complete remission after single treatment using CRISPR gene editing technology. The success opens possibilities for treating thousands of genetic conditions previously considered incurable.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/healthcare/gene-therapy-cure-2024",
+      "date": "2024-08-20",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Obesity rates continue climbing worldwide despite increased awareness of health risks and prevention efforts. Studies identify complex factors including food environment, socioeconomic status, and genetic predisposition. Public health officials advocate for comprehensive approaches addressing individual behavior and systemic issues.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/health-obesity-trends-2025",
+      "date": "2024-06-02",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Artificial intelligence diagnostic tools demonstrate accuracy matching or exceeding human physicians in detecting diseases. AI systems analyze medical images, identify cancer, and predict patient outcomes with remarkable precision. Healthcare providers integrate these technologies while maintaining human oversight for clinical decision-making.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/technology/ai-medical-diagnosis-2024",
+      "date": "2024-03-29",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Telemedicine adoption remains high post-pandemic as patients and providers appreciate convenience and accessibility. Virtual consultations reduce healthcare costs and improve access for rural communities. Regulatory frameworks evolve to support remote care while ensuring quality and safety standards.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/health-telemedicine-growth-2024",
+      "date": "2024-07-26",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Vaccine development advances rapidly using mRNA technology proven successful during COVID-19 pandemic. Researchers create experimental vaccines for cancer, HIV, and malaria showing encouraging early results. The platform's flexibility allows quick adaptation to emerging infectious disease threats.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/healthcare/mrna-vaccine-expansion",
+      "date": "2024-08-15",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Sleep deprivation epidemic affects billions globally with serious health consequences including increased disease risk. Studies link insufficient sleep to cardiovascular problems, diabetes, and mental health disorders. Experts recommend prioritizing sleep hygiene and addressing societal factors that discourage adequate rest.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/health-sleep-crisis-2025",
+      "date": "2024-04-19",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Personalized medicine approaches transform cancer treatment with therapies tailored to individual tumor genetics. Precision oncology improves survival rates and reduces side effects compared to traditional chemotherapy. The field's growth depends on genomic sequencing becoming more affordable and accessible.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/healthcare/personalized-cancer-treatment",
+      "date": "2024-01-03",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Maternal mortality rates decline in developing countries through improved prenatal care and skilled birth attendance. International health initiatives provide training, equipment, and infrastructure to support safe deliveries. Progress continues but significant disparities persist between and within nations.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/health-maternal-health-progress-2024",
+      "date": "2024-12-26",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Microbiome research reveals gut bacteria's crucial role in overall health affecting immunity, metabolism, and mental state. Scientists develop probiotic therapies targeting specific conditions from inflammatory bowel disease to depression. The emerging field promises new treatment approaches for numerous health challenges.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/healthcare/microbiome-discoveries-2024",
+      "date": "2024-06-23",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Childhood vaccination rates drop in some regions raising concerns about preventable disease outbreaks. Misinformation and vaccine hesitancy contribute to declining immunization coverage. Public health campaigns work to rebuild trust and emphasize vaccines' safety and effectiveness.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/health-vaccination-rates-2025",
+      "date": "2024-11-11",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Wearable health devices become increasingly sophisticated monitoring vital signs and detecting potential medical issues. Smartwatches identify irregular heart rhythms, track blood oxygen levels, and alert users to concerning patterns. Integration with healthcare systems enables proactive medical intervention.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/technology/wearable-health-tech-2024",
+      "date": "2024-11-21",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Loneliness epidemic affects mental and physical health with impacts comparable to smoking and obesity. Social isolation increases risks for cardiovascular disease, dementia, and premature death. Communities develop programs fostering social connections especially among elderly and vulnerable populations.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/health-loneliness-crisis-2024",
+      "date": "2024-10-06",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Organ transplant waiting lists shrink as donation rates increase and preservation techniques improve. New technologies extend organ viability allowing transportation over longer distances. Researchers also make progress toward lab-grown organs that could eventually eliminate transplant shortages.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/healthcare/organ-transplant-advances",
+      "date": "2024-05-06",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Diabetes prevalence rises globally driven by obesity, sedentary lifestyles, and aging populations. Healthcare systems struggle with treatment costs and complications including kidney disease and vision loss. Prevention programs emphasize lifestyle modifications and early screening for at-risk individuals.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/health-diabetes-epidemic-2025",
+      "date": "2024-08-03",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Robotic surgery systems enable minimally invasive procedures with enhanced precision and faster patient recovery. Surgeons operate complex cases using advanced robotic platforms providing magnified 3D visualization. The technology expands to more surgical specialties though high costs limit widespread adoption.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/healthcare/robotic-surgery-expansion",
+      "date": "2024-09-19",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Air pollution causes millions of premature deaths annually with children and elderly most vulnerable. Studies link poor air quality to respiratory disease, heart problems, and cognitive decline. Cities implement emission reduction strategies including vehicle restrictions and green space expansion.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/health-air-pollution-impact-2024",
+      "date": "2024-01-06",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Regenerative medicine advances with stem cell therapies showing promise for treating degenerative diseases. Clinical trials test treatments for conditions from spinal cord injuries to macular degeneration. Ethical frameworks guide research while balancing innovation with safety and moral considerations.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/healthcare/stem-cell-progress-2024",
+      "date": "2024-11-08",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Antibiotic stewardship programs reduce unnecessary prescriptions helping preserve drug effectiveness. Hospitals and clinics implement guidelines ensuring antibiotics are used only when medically necessary. The initiatives represent critical strategy in combating antimicrobial resistance threat.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/health-antibiotic-stewardship-2025",
+      "date": "2024-05-10",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Chronic pain affects billions worldwide with limited effective treatment options causing significant suffering. Researchers investigate non-opioid pain management approaches including nerve stimulation and targeted therapies. The work aims to provide relief while avoiding addiction risks associated with traditional painkillers.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/healthcare/chronic-pain-research",
+      "date": "2024-07-07",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Nutritional science evolves beyond calorie counting to understand food's complex effects on health. Research examines how diet influences inflammation, gut microbiome, and disease risk. Personalized nutrition recommendations based on individual genetics and metabolism show promise.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/health-nutrition-science-2024",
+      "date": "2024-06-03",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Healthcare workforce shortages worsen globally as demand outpaces supply of doctors, nurses, and allied health professionals. Burnout and poor working conditions drive professionals from the field. Governments invest in training programs and improve compensation to address critical staffing gaps.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/healthcare/workforce-shortage-crisis",
+      "date": "2024-08-07",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Immunotherapy revolutionizes cancer treatment by harnessing the body's immune system to fight tumors. Checkpoint inhibitors and CAR-T cell therapies achieve remarkable results for previously untreatable cancers. Ongoing research works to expand these approaches to more cancer types.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/health-immunotherapy-advances-2025",
+      "date": "2024-05-03",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Rare disease patients benefit from increased research attention and orphan drug development. Patient advocacy groups drive awareness and funding for conditions affecting small populations. Regulatory incentives encourage pharmaceutical companies to develop treatments for rare disorders.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/business/healthcare/rare-disease-progress",
+      "date": "2024-08-05",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Exercise medicine gains recognition as powerful intervention for preventing and treating chronic diseases. Studies demonstrate physical activity's benefits rival or exceed many pharmaceutical treatments. Healthcare providers increasingly prescribe exercise alongside traditional medical therapies.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/health-exercise-medicine-2024",
+      "date": "2024-08-06",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Infectious disease surveillance systems improve using artificial intelligence to detect outbreaks earlier. Digital tools analyze data from multiple sources identifying concerning patterns before widespread transmission. Enhanced monitoring capabilities strengthen global pandemic preparedness and response.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/technology/disease-surveillance-ai",
+      "date": "2024-01-24",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    },
+    {
+      "text": "Addiction treatment approaches evolve incorporating medication-assisted therapy and harm reduction strategies. Evidence-based programs demonstrate better outcomes than abstinence-only models. Stigma reduction efforts encourage people struggling with addiction to seek help without fear of judgment.",
+      "source": "BBC News",
+      "url": "https://www.bbc.com/news/health-addiction-treatment-2025",
+      "date": "2024-11-22",
+      "copyright": "© 2025 BBC. The BBC is not responsible for the content of external sites."
+    },
+    {
+      "text": "Brain-computer interfaces enable paralyzed patients to communicate and control devices using thoughts alone. Experimental systems decode neural signals allowing users to type messages and operate robotic limbs. The technology offers hope for restoring independence to people with severe disabilities.",
+      "source": "Reuters",
+      "url": "https://www.reuters.com/technology/brain-computer-interface-2024",
+      "date": "2024-11-02",
+      "copyright": "© 2025 Reuters. All rights reserved."
+    }
+  ]
+}
